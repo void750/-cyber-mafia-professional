@@ -487,52 +487,17 @@ for(let phase=1;phase<=5;phase++){
 const challenges = [
 
   ...challengesByPhase[1],
-
   ...challengesByPhase[2],
-
   ...challengesByPhase[3],
-
   ...challengesByPhase[4],
-
   ...challengesByPhase[5]
 
 ];
 
-
-/* =========================================================
-   VERIFICAÇÃO DO BANCO
-   ========================================================= */
-
-console.log(
-  "☠️ Cyber Mafia Professional"
-);
-
-console.log(
-  "Total de desafios:",
-  challenges.length
-);
-
-console.log(
-  "Fase 01:",
-  challengesByPhase[1].length
-);
-
-console.log(
-  "Fase 02:",
-  challengesByPhase[2].length
-);
-
-console.log(
-  "Fase 03:",
-  challengesByPhase[3].length
-);
-
-console.log(
-  "Fase 04:",
-  challengesByPhase[4].length
-);
-
-console.log(
-  "Fase 05:",
-  challengesByPhase[5].length
-);
+console.log("☠️ Cyber Mafia Professional");
+console.log("Total de desafios:", challenges.length);
+console.log("Fase 01:", challengesByPhase[1].length);
+console.log("Fase 02:", challengesByPhase[2].length);
+console.log("Fase 03:", challengesByPhase[3].length);
+console.log("Fase 04:", challengesByPhase[4].length);
+console.log("Fase 05:", challengesByPhase[5].length);
