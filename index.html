@@ -2043,6 +2043,542 @@ const answerKeys = {
   ]
 
 };
+/* =========================================================
+   CYBER MAFIA — MOTOR DE FASE
+   ========================================================= */
+
+let cmCurrentPhase = 1;
+let cmCurrentQuestion = 1;
+let cmAnswered = false;
+
+
+/* =========================
+   BANCO TEMPORÁRIO
+   ========================= */
+
+const challengeBank = {};
+
+
+/* =========================
+   CRIAÇÃO DAS QUESTÕES
+========================= */
+
+for(let phase = 1; phase <= 5; phase++){
+
+  challengeBank[phase] = [];
+
+  for(let question = 1; question <= 100; question++){
+
+    const correct =
+      answerKeys[phase][question - 1];
+
+    challengeBank[phase].push({
+
+      id:
+        `${phase}-${question}`,
+
+      number:
+        question,
+
+      question:
+        `Desafio ${question} da Fase ${phase}: selecione a alternativa correta.`,
+
+      options:{
+
+        A:"Alternativa de treinamento A",
+
+        B:"Alternativa de treinamento B",
+
+        C:"Alternativa de treinamento C",
+
+        D:"Alternativa de treinamento D",
+
+        E:"Alternativa de treinamento E"
+
+      },
+
+      answer:
+        correct,
+
+      explanation:
+        `A resposta correta deste desafio é a alternativa ${correct}.`
+
+    });
+
+  }
+
+}
+
+
+/* =========================
+   ABRIR FASE
+========================= */
+
+function openPhase(phase){
+
+  if(!isPhaseUnlocked(phase)){
+
+    alert(
+      "Complete a fase anterior para desbloquear esta fase."
+    );
+
+    return;
+
+  }
+
+  cmCurrentPhase =
+    phase;
+
+  cmCurrentQuestion =
+    1;
+
+  cmAnswered =
+    false;
+
+  currentView =
+    "challenge";
+
+  render();
+
+}
+
+
+/* =========================
+   TELA DO DESAFIO
+========================= */
+
+function challengeScreen(){
+
+  const challenge =
+    challengeBank
+      [cmCurrentPhase]
+      [cmCurrentQuestion - 1];
+
+
+  if(!challenge){
+
+    return `
+
+      <div class="card hero">
+
+        <h1>
+          Fase concluída! ☠️
+        </h1>
+
+        <p>
+          Você concluiu os 100 desafios
+          desta fase.
+        </p>
+
+        <button
+          class="btn primary"
+          onclick="
+            setView('dashboard')
+          "
+        >
+          VOLTAR AO PAINEL
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  const progress =
+    Math.round(
+
+      (
+        (
+          cmCurrentQuestion - 1
+        )
+        /
+        100
+      )
+      *
+      100
+
+    );
+
+
+  return `
+
+    ${menu()}
+
+    <div class="card challenge">
+
+      <div class="challenge-top">
+
+        <span>
+          FASE ${cmCurrentPhase}
+        </span>
+
+        <span>
+          DESAFIO
+          ${cmCurrentQuestion}
+          /100
+        </span>
+
+      </div>
+
+
+      <div class="bar">
+
+        <i
+          style="
+            width:${progress}%
+          "
+        ></i>
+
+      </div>
+
+
+      <br>
+
+
+      <div class="question">
+
+        ${challenge.question}
+
+      </div>
+
+
+      <div class="options">
+
+        ${Object.entries(
+          challenge.options
+        ).map(
+          ([letter,text]) => `
+
+            <button
+              class="option"
+              id="option-${letter}"
+              onclick="
+                answerChallenge(
+                  '${letter}'
+                )
+              "
+            >
+
+              <b>${letter})</b>
+              ${text}
+
+            </button>
+
+          `
+        ).join("")}
+
+      </div>
+
+
+      <div
+        id="challengeFeedback"
+      ></div>
+
+
+      <div
+        class="challenge-actions"
+      >
+
+        <button
+          class="btn"
+          onclick="
+            setView('dashboard')
+          "
+        >
+          ← Painel
+        </button>
+
+
+        <button
+          id="nextChallengeBtn"
+          class="btn primary hidden"
+          onclick="
+            nextChallenge()
+          "
+        >
+          PRÓXIMO →
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   RESPONDER
+========================= */
+
+function answerChallenge(
+  selected
+){
+
+  if(cmAnswered)
+    return;
+
+  cmAnswered =
+    true;
+
+
+  const challenge =
+    challengeBank
+      [cmCurrentPhase]
+      [cmCurrentQuestion - 1];
+
+
+  const correct =
+    challenge.answer;
+
+
+  const selectedButton =
+    document.getElementById(
+      `option-${selected}`
+    );
+
+  const correctButton =
+    document.getElementById(
+      `option-${correct}`
+    );
+
+
+  if(
+    selectedButton
+  ){
+
+    selectedButton.classList.add(
+
+      selected === correct
+        ? "correct"
+        : "wrong"
+
+    );
+
+  }
+
+
+  if(
+    correctButton &&
+    selected !== correct
+  ){
+
+    correctButton.classList.add(
+      "correct"
+    );
+
+  }
+
+
+  const id =
+    challenge.id;
+
+
+  if(
+    selected === correct
+  ){
+
+    if(
+      !user.answered[id]
+    ){
+
+      user.answered[id] =
+        true;
+
+      user.xp += 10;
+
+      user.completed =
+        getTotalCompleted();
+
+      saveUser();
+
+    }
+
+
+    showFeedback(
+      true,
+      challenge.explanation
+    );
+
+
+  }else{
+
+    showFeedback(
+      false,
+      challenge.explanation
+    );
+
+  }
+
+
+  const next =
+    document.getElementById(
+      "nextChallengeBtn"
+    );
+
+
+  if(next){
+
+    next.classList.remove(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+function showFeedback(
+  correct,
+  explanation
+){
+
+  const box =
+    document.getElementById(
+      "challengeFeedback"
+    );
+
+
+  if(!box)
+    return;
+
+
+  box.innerHTML = `
+
+    <div
+      class="
+        feedback
+        ${
+          correct
+            ? "ok"
+            : "no"
+        }
+      "
+    >
+
+      <strong>
+
+        ${
+          correct
+            ? "✅ CORRETO!"
+            : "❌ INCORRETO"
+        }
+
+      </strong>
+
+      <br><br>
+
+      ${explanation}
+
+      ${
+        correct
+          ? "<br><br>+10 XP"
+          : ""
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   PRÓXIMO DESAFIO
+========================= */
+
+function nextChallenge(){
+
+  if(
+    cmCurrentQuestion
+    <
+    100
+  ){
+
+    cmCurrentQuestion++;
+
+    cmAnswered =
+      false;
+
+    render();
+
+    return;
+
+  }
+
+
+  /*
+    Terminou a fase.
+    O próximo desbloqueia
+    automaticamente.
+  */
+
+  currentView =
+    "dashboard";
+
+  render();
+
+}
+
+
+/* =========================
+   CORREÇÃO DO PROGRESSO
+========================= */
+
+function getTotalCompleted(){
+
+  if(!user)
+    return 0;
+
+
+  return Object.keys(
+    user.answered || {}
+  ).filter(
+    key =>
+      user.answered[key]
+      === true
+  ).length;
+
+}
+
+
+/* =========================
+   DESBLOQUEIO
+========================= */
+
+function isPhaseUnlocked(
+  phase
+){
+
+  if(
+    phase === 1
+  ){
+
+    return true;
+
+  }
+
+
+  return (
+    getPhaseCompleted(
+      phase - 1
+    )
+    >= 100
+  );
+
+}
+
+
+/* =========================
+   FIM DO MOTOR
+========================= */
 </script>
 
 </body>
