@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>☠️ Cyber Mafia Professional</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+
+margin:0;
+min-height:100vh;
+
+font-family:
+Arial,
+Helvetica,
+sans-serif;
+
+color:#eafff1;
+
+background:
+radial-gradient(
+circle at top,
+#123b27 0,
+#06100a 35%,
+#020403 80%
+);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+}
+
+.container{
+
+width:100%;
+max-width:460px;
+
+}
+
+.logo{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.logo .skull{
+
+font-size:55px;
+
+}
+
+.logo h1{
+
+margin:5px 0;
+
+color:#45ff9a;
+
+font-size:32px;
+
+letter-spacing:3px;
+
+}
+
+.logo p{
+
+margin:0;
+
+color:#789684;
+
+font-size:12px;
+
+letter-spacing:2px;
+
+}
+
+.card{
+
+background:
+rgba(7,18,11,.96);
+
+border:1px solid #245c39;
+
+border-radius:18px;
+
+padding:25px;
+
+box-shadow:
+0 20px 60px
+rgba(0,0,0,.5);
+
+}
+
+.tabs{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:8px;
+
+margin-bottom:20px;
+
+}
+
+.tab{
+
+padding:12px;
+
+background:#081109;
+
+border:1px solid #234c31;
+
+border-radius:8px;
+
+color:#83a18d;
+
+font-weight:bold;
+
+}
+
+.tab.active{
+
+background:#10341d;
+
+border-color:#45ff9a;
+
+color:#45ff9a;
+
+}
+
+.form{
+
+display:grid;
+
+gap:13px;
+
+}
+
+label{
+
+font-size:11px;
+
+color:#7da38b;
+
+}
+
+input{
+
+width:100%;
+
+padding:14px;
+
+margin-top:5px;
+
+background:#030704;
+
+border:1px solid #254b32;
+
+border-radius:9px;
+
+color:white;
+
+outline:none;
+
+}
+
+input:focus{
+
+border-color:#45ff9a;
+
+}
+
+.primary{
+
+width:100%;
+
+padding:14px;
+
+border:0;
+
+border-radius:9px;
+
+background:#45ff9a;
+
+color:#031008;
+
+font-weight:bold;
+
+cursor:pointer;
+
+margin-top:5px;
+
+}
+
+.primary:hover{
+
+filter:brightness(1.1);
+
+}
+
+.message{
+
+min-height:20px;
+
+margin-top:15px;
+
+text-align:center;
+
+font-size:13px;
+
+}
+
+.info{
+
+margin-top:20px;
+
+padding:13px;
+
+background:#06100a;
+
+border-left:3px solid #45ff9a;
+
+color:#789684;
+
+font-size:11px;
+
+line-height:1.6;
+
+}
+
+.footer{
+
+text-align:center;
+
+margin-top:18px;
+
+font-size:10px;
+
+color:#50695a;
+
+}
+
+.hidden{
+
+display:none;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="logo">
+
+<div class="skull">
+☠️
+</div>
+
+<h1>
+CYBER MAFIA
+</h1>
+
+<p>
+PROFESSIONAL CYBERSECURITY ACADEMY
+</p>
+
+</div>
+
+
+<div class="card">
+
+
+<div class="tabs">
+
+<button
+id="loginTab"
+class="tab active"
+onclick="showLogin()">
+
+ENTRAR
+
+</button>
+
+
+<button
+id="registerTab"
+class="tab"
+onclick="showRegister()">
+
+CADASTRO
+
+</button>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<form
+id="loginForm"
+class="form"
+onsubmit="login(event)">
+
+<div>
+
+<label>
+USUÁRIO
+</label>
+
+<input
+id="loginUser"
+type="text"
+placeholder="Digite seu usuário"
+required>
+
+</div>
+
+
+<div>
+
+<label>
+SENHA
+</label>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Digite sua senha"
+required>
+
+</div>
+
+
+<button
+class="primary"
+type="submit">
+
+ENTRAR NA ACADEMIA
+
+</button>
+
+</form>
+
+
+<!-- CADASTRO -->
+
+<form
+id="registerForm"
+class="form hidden"
+onsubmit="register(event)">
+
+<div>
+
+<label>
+USUÁRIO
+</label>
+
+<input
+id="registerUser"
+type="text"
+placeholder="Crie seu usuário"
+required>
+
+</div>
+
+
+<div>
+
+<label>
+SENHA
+</label>
+
+<input
+id="registerPassword"
+type="password"
+placeholder="Crie sua senha"
+required>
+
+</div>
+
+
+<div>
+
+<label>
+CONFIRMAR SENHA
+</label>
+
+<input
+id="registerPassword2"
+type="password"
+placeholder="Digite a senha novamente"
+required>
+
+</div>
+
+
+<button
+class="primary"
+type="submit">
+
+CRIAR CONTA
+
+</button>
+
+</form>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+<div class="info">
+
+☠️ <b>Cyber Mafia Professional</b><br><br>
+
+Academia educacional de cibersegurança com
+desafios, XP, níveis, laboratório e CTF.
+
+<br><br>
+
+Use somente para aprendizado e em
+ambientes autorizados.
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+CYBER MAFIA • TRAIN • LEARN • DEFEND
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const loginForm=
+document.getElementById("loginForm");
+
+const registerForm=
+document.getElementById("registerForm");
+
+const loginTab=
+document.getElementById("loginTab");
+
+const registerTab=
+document.getElementById("registerTab");
+
+const message=
+document.getElementById("message");
+
+
+/* =========================
+   TROCAR PARA LOGIN
+========================= */
+
+function showLogin(){
+
+loginForm.classList.remove("hidden");
+
+registerForm.classList.add("hidden");
+
+loginTab.classList.add("active");
+
+registerTab.classList.remove("active");
+
+message.textContent="";
+
+}
+
+
+/* =========================
+   TROCAR PARA CADASTRO
+========================= */
+
+function showRegister(){
+
+loginForm.classList.add("hidden");
+
+registerForm.classList.remove("hidden");
+
+loginTab.classList.remove("active");
+
+registerTab.classList.add("active");
+
+message.textContent="";
+
+}
+
+
+/* =========================
+   HASH DA SENHA
+========================= */
+
+async function hashPassword(password){
+
+const data=
+new TextEncoder()
+.encode(password);
+
+const hash=
+await crypto.subtle.digest(
+"SHA-256",
+data
+);
+
+return Array
+.from(new Uint8Array(hash))
+.map(
+b=>b.toString(16).padStart(2,"0")
+)
+.join("");
+
+}
+
+
+/* =========================
+   CADASTRO
+========================= */
+
+async function register(event){
+
+event.preventDefault();
+
+const username=
+document
+.getElementById("registerUser")
+.value
+.trim()
+.toLowerCase();
+
+const password=
+document
+.getElementById("registerPassword")
+.value;
+
+const password2=
+document
+.getElementById("registerPassword2")
+.value;
+
+
+if(username.length<3){
+
+message.textContent=
+"❌ O usuário precisa ter pelo menos 3 caracteres.";
+
+return;
+
+}
+
+
+if(password.length<4){
+
+message.textContent=
+"❌ A senha precisa ter pelo menos 4 caracteres.";
+
+return;
+
+}
+
+
+if(password!==password2){
+
+message.textContent=
+"❌ As senhas não são iguais.";
+
+return;
+
+}
+
+
+const users=
+JSON.parse(
+localStorage.getItem("cmUsers")||"[]"
+);
+
+
+if(
+users.some(
+u=>u.username===username
+)
+){
+
+message.textContent=
+"❌ Este usuário já existe.";
+
+return;
+
+}
+
+
+const passwordHash=
+await hashPassword(password);
+
+
+const user={
+
+id:
+"CM-"+Date.now(),
+
+username:username,
+
+passwordHash:passwordHash,
+
+xp:0,
+
+completed:0,
+
+answered:{},
+
+phaseProgress:{},
+
+createdAt:
+new Date().toISOString()
+
+};
+
+
+users.push(user);
+
+
+localStorage.setItem(
+"cmUsers",
+JSON.stringify(users)
+);
+
+
+message.textContent=
+"✅ Conta criada! Entrando...";
+
+
+localStorage.setItem(
+"cmSession",
+JSON.stringify({
+id:user.id,
+username:user.username
+})
+);
+
+
+setTimeout(
+()=>{
+window.location.href="painel.html";
+},
+500
+);
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(event){
+
+event.preventDefault();
+
+const username=
+document
+.getElementById("loginUser")
+.value
+.trim()
+.toLowerCase();
+
+const password=
+document
+.getElementById("loginPassword")
+.value;
+
+
+const passwordHash=
+await hashPassword(password);
+
+
+const users=
+JSON.parse(
+localStorage.getItem("cmUsers")||"[]"
+);
+
+
+const user=
+users.find(
+u=>
+u.username===username &&
+u.passwordHash===passwordHash
+);
+
+
+if(!user){
+
+message.textContent=
+"❌ Usuário ou senha incorretos.";
+
+return;
+
+}
+
+
+localStorage.setItem(
+"cmSession",
+JSON.stringify({
+id:user.id,
+username:user.username
+})
+);
+
+
+message.textContent=
+"✅ Login realizado. Entrando...";
+
+
+setTimeout(
+()=>{
+window.location.href="painel.html";
+},
+400
+);
+
+}
+
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+showLogin();
+
+</script>
+
+
+</body>
+
+</html>
