@@ -2,1398 +2,626 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>☠️ Cyber Mafia Professional</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#050908;--panel:#0b1510;--line:#1d4930;--green:#45ff9a;--muted:#799383;--red:#ff526d;--gold:#ffd166}
-body{background:radial-gradient(circle at top,#123c29,#050908 42%,#020403);color:#eafff1;font-family:Arial,sans-serif;min-height:100vh}
-button,input{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
-header{height:68px;border-bottom:1px solid var(--line);background:#06100bee;display:flex;align-items:center;justify-content:space-between;padding:0 4%;position:sticky;top:0;z-index:50}
-.logo{font-size:20px;font-weight:900;letter-spacing:2px;color:var(--green)}
-.userbar{display:flex;align-items:center;gap:10px;color:#9bc4aa}
-.badge{padding:6px 10px;border:1px solid #39805a;border-radius:20px;color:var(--green);font-size:11px}
-.logout{background:transparent;border:1px solid #71303e;color:#ff7084;border-radius:8px;padding:7px 10px}
+body{
+min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+color:#ecfff3;
+background:
+radial-gradient(circle at 20% 10%,#123b27 0,#07110b 35%,#020403 80%);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
 
-.container{width:92%;max-width:1200px;margin:25px auto}
-.auth{min-height:100vh;display:grid;place-items:center;padding:20px}
-.auth-card{width:min(450px,100%);background:#0a120e;border:1px solid #28633f;border-radius:22px;padding:30px;box-shadow:0 0 70px #00ff7a18}
-.logo-big{font-size:32px;color:var(--green);font-weight:900;text-align:center;letter-spacing:3px}
-.center{text-align:center}
-.subtitle{color:var(--muted);font-size:11px;letter-spacing:2px;margin:7px 0 25px}
-.tabs{display:flex;margin-bottom:18px}
-.tab{flex:1;background:#0d1912;color:#789383;border:1px solid var(--line);padding:12px}
-.tab.active{background:#10261a;color:var(--green);border-color:var(--green)}
-.form{display:grid;gap:10px}
-input{width:100%;padding:13px;background:#050a07;border:1px solid #284936;border-radius:9px;color:#fff;outline:none}
-input:focus{border-color:var(--green)}
-.primary{border:0;border-radius:9px;padding:13px;background:var(--green);color:#031008;font-weight:900}
-.msg{min-height:20px;color:#ffcc72;margin-top:10px;font-size:13px}
-.demo{margin-top:18px;padding:12px;border:1px dashed #345840;border-radius:10px;color:#819a89;font-size:12px}
+.card{
+width:100%;
+max-width:430px;
+background:rgba(7,15,10,.96);
+border:1px solid #285f3f;
+border-radius:22px;
+padding:30px;
+box-shadow:
+0 0 70px rgba(69,255,154,.10),
+inset 0 0 30px rgba(69,255,154,.025);
+}
 
-.hero{display:flex;justify-content:space-between;gap:25px;align-items:center;background:linear-gradient(135deg,#0d1c13,#09100c);border:1px solid #205538;border-radius:20px;padding:30px}
-.eyebrow{font-size:11px;letter-spacing:2px;color:#65ad80}
-h1{font-size:clamp(30px,6vw,55px);color:var(--green);margin:8px 0}
-.hero p{color:#88a693}
-.stats{display:flex;gap:18px}
-.stat{text-align:center;min-width:80px}
-.stat b{display:block;color:var(--green);font-size:26px}
-.stat span{font-size:10px;color:var(--muted)}
+.logo{
+text-align:center;
+font-size:31px;
+font-weight:900;
+letter-spacing:3px;
+color:#45ff9a;
+}
 
-.progress{height:8px;background:#142219;border-radius:20px;overflow:hidden;margin:18px 0}
-.progress i{display:block;height:100%;background:var(--green);transition:.3s}
+.sub{
+text-align:center;
+margin-top:8px;
+margin-bottom:28px;
+font-size:11px;
+letter-spacing:2px;
+color:#75917f;
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px}
-.phase{cursor:pointer;transition:.2s}
-.phase:hover{transform:translateY(-3px);border-color:var(--green)}
-.phase.locked{opacity:.45;cursor:not-allowed}
-.num{font-size:11px;letter-spacing:2px;color:var(--green)}
-.phase h3{margin:10px 0}
-.phase p{font-size:13px;color:var(--muted);min-height:40px}
-.phasebar{height:6px;background:#16251a;border-radius:10px;overflow:hidden;margin:12px 0}
-.phasebar i{display:block;height:100%;background:var(--green)}
-.btn{border:1px solid var(--line);background:#0d1913;color:#dfffea;padding:10px 13px;border-radius:9px}
-.btn:hover{border-color:var(--green);color:var(--green)}
+.tabs{
+display:flex;
+margin-bottom:20px;
+}
 
-.section{margin-top:22px}
-.question{font-size:22px;line-height:1.5;margin:15px 0}
-.options{display:grid;gap:10px}
-.option{background:#0d1913;border:1px solid #294936;color:#effff4;text-align:left;padding:15px;border-radius:10px}
-.option:hover{border-color:var(--green)}
-.option.correct{border-color:var(--green);background:#10361f}
-.option.wrong{border-color:var(--red);background:#35131a}
-.explain{margin-top:15px;padding:15px;border-left:3px solid var(--green);background:#0d1913;color:#bfe3ca}
-.actions{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-.search{margin-bottom:15px}
-.video{aspect-ratio:16/9;border:1px dashed #315b40;border-radius:12px;background:#050806;display:grid;place-items:center;color:#627d6d;margin-top:15px}
-.terminal{background:#020403;border:1px solid #214331;border-radius:12px;padding:15px;font-family:monospace;min-height:250px;color:#8dffb6}
-.term-input{font-family:monospace}
-.achievement{font-size:38px}
-.toast{position:fixed;right:15px;bottom:15px;background:#10291b;border:1px solid #3d8c5e;color:var(--green);padding:13px 16px;border-radius:10px;transform:translateY(100px);transition:.2s;z-index:100}
-.toast.show{transform:translateY(0)}
+.tabs button{
+flex:1;
+padding:12px;
+border:1px solid #234831;
+background:#0b1710;
+color:#718c7b;
+cursor:pointer;
+}
 
-@media(max-width:700px){
-.hero{display:block}
-.stats{margin-top:22px;justify-content:space-between}
-header{height:auto;padding:13px 4%;gap:8px;flex-wrap:wrap}
-.userbar{font-size:12px}
-.container{width:94%}
+.tabs button:first-child{
+border-radius:9px 0 0 9px;
+}
+
+.tabs button:last-child{
+border-radius:0 9px 9px 0;
+}
+
+.tabs button.active{
+background:#10291a;
+border-color:#45ff9a;
+color:#45ff9a;
+}
+
+form{
+display:grid;
+gap:11px;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #294936;
+background:#040805;
+color:white;
+outline:none;
+}
+
+input:focus{
+border-color:#45ff9a;
+box-shadow:0 0 0 2px rgba(69,255,154,.08);
+}
+
+.primary{
+padding:14px;
+border:0;
+border-radius:10px;
+background:#45ff9a;
+color:#031008;
+font-weight:900;
+cursor:pointer;
+}
+
+.primary:hover{
+filter:brightness(1.08);
+}
+
+.hidden{
+display:none!important;
+}
+
+.message{
+min-height:20px;
+margin-top:13px;
+text-align:center;
+font-size:13px;
+color:#ffbd68;
+}
+
+.security{
+margin-top:25px;
+padding:13px;
+border:1px dashed #294936;
+border-radius:10px;
+color:#718a79;
+font-size:11px;
+line-height:1.6;
+text-align:center;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:10px;
+color:#405a49;
 }
 </style>
 </head>
 
 <body>
 
-<div id="toast" class="toast"></div>
+<div class="card">
 
-<!-- LOGIN -->
-<section id="loginScreen" class="auth">
+<div class="logo">
+☠️ CYBER MAFIA
+</div>
 
-<div class="auth-card">
+<div class="sub">
+PROFESSIONAL CYBERSECURITY ACADEMY
+</div>
 
-<div class="logo-big">☠️ CYBER MAFIA</div>
-<div class="subtitle center">PROFESSIONAL CYBERSECURITY ACADEMY</div>
 
 <div class="tabs">
-<button class="tab active" onclick="showLogin()">ENTRAR</button>
-<button class="tab" onclick="showRegister()">CADASTRO</button>
+
+<button id="loginTab"
+class="active"
+onclick="showLogin()">
+ENTRAR
+</button>
+
+<button id="registerTab"
+onclick="showRegister()">
+CADASTRO
+</button>
+
 </div>
 
-<form id="loginForm" class="form" onsubmit="event.preventDefault(); login();">
-<input id="loginUser" placeholder="Usuário" required>
-<input id="loginPass" type="password" placeholder="Senha" required>
-<input id="loginKey" placeholder="Chave individual" required>
-<button class="primary">ENTRAR NA ACADEMIA</button>
+
+<!-- LOGIN -->
+
+<form id="loginForm"
+onsubmit="event.preventDefault();login();">
+
+<input
+id="loginUser"
+type="text"
+placeholder="Usuário"
+autocomplete="username"
+required
+>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Senha"
+autocomplete="current-password"
+required
+>
+
+<button
+class="primary"
+type="submit">
+ENTRAR NA ACADEMIA
+</button>
+
 </form>
 
-<form id="registerForm" class="form hidden" onsubmit="event.preventDefault(); register();">
-<input id="regName" placeholder="Nome completo" required>
-<input id="regUser" placeholder="Usuário" required>
-<input id="regPass" type="password" minlength="6" placeholder="Senha" required>
-<input id="regKey" placeholder="Chave individual" required>
-<button class="primary">CRIAR CONTA</button>
+
+<!-- CADASTRO -->
+
+<form
+id="registerForm"
+class="hidden"
+onsubmit="event.preventDefault();register();">
+
+<input
+id="registerName"
+type="text"
+placeholder="Nome completo"
+required
+>
+
+<input
+id="registerUser"
+type="text"
+placeholder="Escolha seu usuário"
+required
+>
+
+<input
+id="registerPassword"
+type="password"
+placeholder="Crie uma senha"
+minlength="6"
+required
+>
+
+<input
+id="registerPassword2"
+type="password"
+placeholder="Confirme a senha"
+minlength="6"
+required
+>
+
+<button
+class="primary"
+type="submit">
+CRIAR CONTA
+</button>
+
 </form>
 
-<div id="authMsg" class="msg"></div>
 
-<div class="demo">
-<b>TESTE DEMONSTRAÇÃO</b><br><br>
-Usuário: <b>demo</b><br>
-Senha: <b>cyber123</b><br>
-Chave: <b>CM-DEMO-2026</b>
+<div
+id="message"
+class="message">
 </div>
 
-</div>
-</section>
 
+<div class="security">
 
-<!-- APP -->
-<section id="app" class="hidden">
-
-<header>
-<div class="logo">☠️ CYBER MAFIA</div>
-
-<div class="userbar">
-<span id="userName"></span>
-<span class="badge">LV <b id="level">1</b></span>
-<span>⭐ <b id="topXP">0</b></span>
-<button class="logout" onclick="logout()">SAIR</button>
-</div>
-</header>
-
-<main class="container">
-
-<section id="dashboard">
-
-<div class="hero">
-
-<div>
-<div class="eyebrow">PAINEL DO OPERADOR</div>
-<h1>Domine a cibersegurança.</h1>
-<p>500 desafios. 5 fases. Uma jornada completa.</p>
-</div>
-
-<div class="stats">
-<div class="stat"><b id="xp">0</b><span>XP</span></div>
-<div class="stat"><b id="done">0</b><span>DESAFIOS</span></div>
-<div class="stat"><b id="medals">0</b><span>MEDALHAS</span></div>
-</div>
+🔐 Login protegido por usuário e senha.<br>
+Não existe chave de acesso para o aluno.<br>
+<br>
+☠️ Cyber Mafia Professional
 
 </div>
 
-<div class="progress">
-<i id="globalBar"></i>
+
+<div class="footer">
+Sistema educacional de cibersegurança
 </div>
 
-<div class="section">
-<input class="search" id="search" placeholder="🔎 Pesquisar entre os 500 desafios..." oninput="searchChallenges()">
 </div>
-
-<div id="phaseGrid" class="grid"></div>
-
-<div id="searchResults" class="grid section"></div>
-
-</section>
-
-
-<section id="content" class="section hidden"></section>
-
-
-<section id="admin" class="section hidden"></section>
-
-</main>
-</section>
 
 
 <script>
 
 /* =========================================================
-   CYBER MAFIA PROFESSIONAL
-   VERSÃO COMPLETA EM UM ÚNICO ARQUIVO
+   CYBER MAFIA — AUTENTICAÇÃO LOCAL
+   A AUTENTICAÇÃO ONLINE SERÁ LIGADA AO SUPABASE
+   NA PRÓXIMA ETAPA.
    ========================================================= */
 
 
-/* ---------- ESTADO ---------- */
+/* ---------- ELEMENTOS ---------- */
 
-let user=null;
+const loginForm=
+document.getElementById("loginForm");
 
-let state={
+const registerForm=
+document.getElementById("registerForm");
+
+const loginTab=
+document.getElementById("loginTab");
+
+const registerTab=
+document.getElementById("registerTab");
+
+const message=
+document.getElementById("message");
+
+
+/* ---------- TELA LOGIN ---------- */
+
+function showLogin(){
+
+loginForm.classList.remove("hidden");
+
+registerForm.classList.add("hidden");
+
+loginTab.classList.add("active");
+
+registerTab.classList.remove("active");
+
+message.innerText="";
+
+}
+
+
+/* ---------- TELA CADASTRO ---------- */
+
+function showRegister(){
+
+loginForm.classList.add("hidden");
+
+registerForm.classList.remove("hidden");
+
+loginTab.classList.remove("active");
+
+registerTab.classList.add("active");
+
+message.innerText="";
+
+}
+
+
+/* ---------- HASH DE SENHA ---------- */
+
+async function hashPassword(password){
+
+const data=
+new TextEncoder().encode(password);
+
+const hash=
+await crypto.subtle.digest(
+"SHA-256",
+data
+);
+
+return Array
+.from(new Uint8Array(hash))
+.map(
+b=>b.toString(16).padStart(2,"0")
+)
+.join("");
+
+}
+
+
+/* ---------- CADASTRO ---------- */
+
+async function register(){
+
+const name=
+document.getElementById("registerName")
+.value.trim();
+
+const username=
+document.getElementById("registerUser")
+.value.trim()
+.toLowerCase();
+
+const password=
+document.getElementById("registerPassword")
+.value;
+
+const password2=
+document.getElementById("registerPassword2")
+.value;
+
+
+if(password!==password2){
+
+message.innerText=
+"As senhas não coincidem.";
+
+return;
+
+}
+
+
+if(password.length<6){
+
+message.innerText=
+"A senha precisa ter pelo menos 6 caracteres.";
+
+return;
+
+}
+
+
+const users=
+JSON.parse(
+localStorage.getItem("cmUsers")
+||"[]"
+);
+
+
+if(
+users.some(
+u=>u.username===username
+)
+){
+
+message.innerText=
+"Esse usuário já existe.";
+
+return;
+
+}
+
+
+const passwordHash=
+await hashPassword(password);
+
+
+const user={
+
+id:
+"CM-"+Date.now(),
+
+name,
+
+username,
+
+passwordHash,
+
+createdAt:
+new Date().toISOString(),
+
+active:true,
+
 xp:0,
-answers:{},
+
+level:1,
+
+completed:0,
+
 progress:{},
+
 medals:[]
-};
-
-let currentPhase=1;
-let currentQuestion=0;
-
-
-/* ---------- FASES ---------- */
-
-const phases=[
-
-{
-id:1,
-name:"Redes & Fundamentos",
-icon:"🌐",
-description:"TCP/IP, DNS, HTTP, endereçamento, portas e arquitetura."
-},
-
-{
-id:2,
-name:"Linux & Sistemas",
-icon:"🐧",
-description:"Terminal, arquivos, permissões, processos e serviços."
-},
-
-{
-id:3,
-name:"Segurança da Informação",
-icon:"🛡️",
-description:"Riscos, autenticação, criptografia, defesa e proteção."
-},
-
-{
-id:4,
-name:"Hacking Ético & Pentest",
-icon:"⚔️",
-description:"Metodologia, escopo, reconhecimento e validação autorizada."
-},
-
-{
-id:5,
-name:"Laboratório & CTF",
-icon:"🚩",
-description:"Cenários simulados, análise e desafios práticos."
-}
-
-];
-
-
-/* ---------- BANCO DE DESAFIOS ---------- */
-
-const topics={
-
-1:[
-["DNS","serviço responsável por traduzir nomes de domínio em endereços IP"],
-["DHCP","serviço responsável por entregar configurações de rede aos clientes"],
-["HTTPS","protocolo usado para comunicação web protegida por TLS"],
-["roteador","equipamento que encaminha pacotes entre redes"],
-["switch","equipamento que conecta dispositivos dentro de uma rede local"],
-["IP","identificador lógico usado para comunicação em uma rede"],
-["TCP","protocolo orientado à conexão que oferece entrega confiável"],
-["UDP","protocolo de transporte sem conexão e com menor sobrecarga"],
-["NAT","mecanismo usado para traduzir endereços entre redes"],
-["porta","identificador lógico associado a um serviço de rede"]
-],
-
-2:[
-["ls","comando usado para listar arquivos e diretórios"],
-["pwd","comando que mostra o diretório de trabalho atual"],
-["cd","comando usado para mudar de diretório"],
-["grep","ferramenta usada para pesquisar padrões de texto"],
-["chmod","comando usado para alterar permissões"],
-["ps","comando usado para visualizar processos"],
-["mkdir","comando usado para criar diretórios"],
-["cat","comando usado para exibir conteúdo de arquivos"],
-["whoami","comando que mostra o usuário atual"],
-["logs","registros usados para auditoria e diagnóstico"]
-],
-
-3:[
-["MFA","mecanismo que combina múltiplos fatores de autenticação"],
-["menor privilégio","princípio que concede somente os acessos necessários"],
-["backup","cópia usada para recuperação de dados"],
-["hash","representação derivada de dados usada em verificações de integridade"],
-["criptografia","mecanismo usado para proteger informações"],
-["CIA","tríade de confidencialidade, integridade e disponibilidade"],
-["phishing","técnica de engenharia social usada para enganar usuários"],
-["firewall","controle que filtra tráfego conforme regras"],
-["vulnerabilidade","fraqueza que pode contribuir para um risco"],
-["risco","combinação de probabilidade e impacto"]
-],
-
-4:[
-["escopo","limites definidos para um teste de segurança"],
-["autorização","permissão formal necessária antes de testar"],
-["reconhecimento","etapa de coleta de informações dentro do escopo"],
-["evidência","registro que sustenta uma descoberta"],
-["relatório","documento que comunica achados e recomendações"],
-["pentest","teste autorizado para avaliar controles de segurança"],
-["OWASP","organização conhecida por materiais de segurança de aplicações"],
-["regra de engajamento","conjunto de condições que orienta um teste"],
-["vulnerabilidade","fraqueza identificada durante uma avaliação"],
-["ética","conjunto de princípios que orienta a atuação profissional"]
-],
-
-5:[
-["CTF","atividade prática baseada em desafios e objetivos definidos"],
-["flag","evidência ou token usado para comprovar a solução de um desafio"],
-["sandbox","ambiente isolado para experimentação segura"],
-["VM","máquina virtual usada para criar ambientes controlados"],
-["triagem","processo de priorização e análise inicial de eventos"],
-["forense","processo de preservação e análise de evidências"],
-["IOC","indicador que pode ajudar a identificar atividade suspeita"],
-["hardening","processo de reduzir superfícies e configurações inseguras"],
-["detecção","capacidade de identificar eventos relevantes"],
-["resposta","ações coordenadas após um incidente"]
-]
 
 };
 
 
-/* ---------- GERAÇÃO DOS 500 DESAFIOS ---------- */
+users.push(user);
 
-const challenges=[];
 
-function generateChallenges(){
+localStorage.setItem(
+"cmUsers",
+JSON.stringify(users)
+);
 
-for(let phase=1;phase<=5;phase++){
 
-for(let n=1;n<=100;n++){
+localStorage.setItem(
+"cmSession",
+JSON.stringify({
+id:user.id,
+username:user.username
+})
+);
 
-const topic=topics[phase][(n-1)%10];
 
-const difficulty=
-n<=25 ? "Fundamentos" :
-n<=50 ? "Intermediário" :
-n<=75 ? "Avançado" :
-"Especialista";
+message.style.color="#45ff9a";
 
-const scenarios=[
+message.innerText=
+"Conta criada. Entrando...";
 
-`Em um laboratório autorizado, você precisa analisar ${topic[0]}. Qual é a decisão mais adequada?`,
 
-`Durante uma avaliação de segurança, você encontra uma situação relacionada a ${topic[0]}. Qual alternativa representa a melhor prática?`,
-
-`Um analista iniciante está estudando ${topic[0]}. Qual afirmação demonstra entendimento correto?`,
-
-`Em um cenário profissional controlado, qual abordagem deve ser usada ao trabalhar com ${topic[0]}?`
-
-];
-
-const correct=[
-`Seguir o escopo, validar as informações e documentar o resultado.`,
-`Aplicar o conceito de forma controlada, autorizada e documentada.`,
-`Confirmar evidências antes de tomar decisões e considerar o impacto.`,
-`Usar um ambiente autorizado e preservar registros relevantes.`
-][(n+phase)%4];
-
-const wrong=[
-
-`Ignorar o escopo se a descoberta parecer interessante.`,
-
-`Alterar sistemas de produção sem autorização.`,
-
-`Compartilhar credenciais para acelerar o trabalho.`
-
-];
-
-let options=[correct,...wrong];
-
-/* Distribuição A/B/C/D */
-const correctPosition=(n+phase*2)%4;
-
-const shuffled=[];
-
-let wi=0;
-
-for(let i=0;i<4;i++){
-
-if(i===correctPosition){
-
-shuffled.push(correct);
-
-}else{
-
-shuffled.push(wrong[wi++]);
-
-}
-
-}
-
-challenges.push({
-
-id:`P${phase}-${n}`,
-
-phase,
-
-number:n,
-
-difficulty,
-
-topic:topic[0],
-
-question:
-scenarios[(n+phase)%scenarios.length],
-
-options:shuffled,
-
-answer:correctPosition,
-
-explanation:
-`A resposta correta segue uma prática profissional de cibersegurança: trabalhar em ambiente autorizado, respeitar o escopo, validar evidências, minimizar impacto e documentar o resultado.`,
-
-xp:
-10+(phase*2)+
-(Math.floor((n-1)/25)*5)
-
-});
-
-}
-
-}
+setTimeout(
+()=>{
+window.location.href="painel.html";
+},
+600
+);
 
 }
 
 
 /* ---------- LOGIN ---------- */
 
-function showLogin(){
-
-document.getElementById("loginForm")
-.classList.remove("hidden");
-
-document.getElementById("registerForm")
-.classList.add("hidden");
-
-document.querySelectorAll(".tab")[0]
-.classList.add("active");
-
-document.querySelectorAll(".tab")[1]
-.classList.remove("active");
-
-}
-
-
-function showRegister(){
-
-document.getElementById("loginForm")
-.classList.add("hidden");
-
-document.getElementById("registerForm")
-.classList.remove("hidden");
-
-document.querySelectorAll(".tab")[1]
-.classList.add("active");
-
-document.querySelectorAll(".tab")[0]
-.classList.remove("active");
-
-}
-
-
-function register(){
-
-const name=
-document.getElementById("regName").value.trim();
+async function login(){
 
 const username=
-document.getElementById("regUser").value.trim();
+document.getElementById("loginUser")
+.value.trim()
+.toLowerCase();
 
 const password=
-document.getElementById("regPass").value;
-
-const key=
-document.getElementById("regKey").value.trim();
-
-if(key!=="CM-DEMO-2026" && !key.startsWith("CM-")){
-
-document.getElementById("authMsg")
-.innerText="Chave de acesso inválida.";
-
-return;
-
-}
-
-user={
-name,
-username,
-key
-};
-
-state={
-xp:0,
-answers:{},
-progress:{},
-medals:[]
-};
-
-localStorage.setItem(
-"cyberMafiaUser",
-JSON.stringify(user)
-);
-
-localStorage.setItem(
-"cyberMafiaState",
-JSON.stringify(state)
-);
-
-enterApp();
-
-}
+document.getElementById("loginPassword")
+.value;
 
 
-function login(){
+const passwordHash=
+await hashPassword(password);
 
-const username=
-document.getElementById("loginUser").value.trim();
 
-const password=
-document.getElementById("loginPass").value;
-
-const key=
-document.getElementById("loginKey").value.trim();
-
-const savedUser=
+const users=
 JSON.parse(
-localStorage.getItem("cyberMafiaUser")
+localStorage.getItem("cmUsers")
+||"[]"
 );
+
+
+let user=
+users.find(
+u=>
+u.username===username &&
+u.passwordHash===passwordHash
+);
+
+
+if(!user){
+
+/* CONTA DEMONSTRAÇÃO */
 
 if(
 username==="demo" &&
-password==="cyber123" &&
-key==="CM-DEMO-2026"
+password==="cyber123"
 ){
 
 user={
+
+id:"CM-DEMO",
+
 name:"Aluno Demo",
+
 username:"demo",
-key
-};
 
-state=
-JSON.parse(
-localStorage.getItem("cyberMafiaState")
-)||{
+passwordHash,
+
+createdAt:
+new Date().toISOString(),
+
+active:true,
+
 xp:0,
-answers:{},
+
+level:1,
+
+completed:0,
+
 progress:{},
+
 medals:[]
+
 };
-
-enterApp();
-
-return;
-
-}
-
-if(!savedUser){
-
-document.getElementById("authMsg")
-.innerText="Conta não encontrada. Faça o cadastro.";
-
-return;
-
-}
-
-if(
-savedUser.username!==username ||
-savedUser.key!==key
-){
-
-document.getElementById("authMsg")
-.innerText="Usuário ou chave incorretos.";
-
-return;
-
-}
-
-user=savedUser;
-
-state=
-JSON.parse(
-localStorage.getItem("cyberMafiaState")
-)||{
-xp:0,
-answers:{},
-progress:{},
-medals:[]
-};
-
-enterApp();
-
-}
-
-
-/* ---------- APP ---------- */
-
-function enterApp(){
-
-document.getElementById("loginScreen")
-.classList.add("hidden");
-
-document.getElementById("app")
-.classList.remove("hidden");
-
-document.getElementById("userName")
-.innerText=user.name;
-
-renderDashboard();
-
-}
-
-
-function logout(){
-
-localStorage.removeItem("cyberMafiaUser");
-
-location.reload();
-
-}
-
-
-/* ---------- DASHBOARD ---------- */
-
-function renderDashboard(){
-
-document.getElementById("content")
-.classList.add("hidden");
-
-document.getElementById("dashboard")
-.classList.remove("hidden");
-
-updateStats();
-
-renderPhases();
-
-}
-
-
-function updateStats(){
-
-const completed=
-Object.values(state.answers)
-.filter(x=>x===true).length;
-
-const xp=state.xp||0;
-
-const level=
-Math.floor(xp/100)+1;
-
-document.getElementById("xp")
-.innerText=xp;
-
-document.getElementById("topXP")
-.innerText=xp;
-
-document.getElementById("done")
-.innerText=completed;
-
-document.getElementById("medals")
-.innerText=state.medals.length;
-
-document.getElementById("level")
-.innerText=level;
-
-document.getElementById("globalBar")
-.style.width=
-Math.min(100,(completed/500)*100)+"%";
-
-}
-
-
-/* ---------- FASES ---------- */
-
-function phaseUnlocked(phase){
-
-if(phase===1)return true;
-
-const previous=
-state.progress[phase-1]||0;
-
-return previous>=80;
-
-}
-
-
-function renderPhases(){
-
-const grid=
-document.getElementById("phaseGrid");
-
-grid.innerHTML="";
-
-phases.forEach(p=>{
-
-const progress=
-state.progress[p.id]||0;
-
-const unlocked=
-phaseUnlocked(p.id);
-
-const div=
-document.createElement("div");
-
-div.className=
-"card phase "+
-(unlocked?"":"locked");
-
-div.innerHTML=`
-
-<div class="num">
-FASE ${String(p.id).padStart(2,"0")}
-${unlocked?"":" 🔒"}
-</div>
-
-<h3>
-${p.icon} ${p.name}
-</h3>
-
-<p>
-${p.description}
-</p>
-
-<div class="phasebar">
-<i style="width:${progress}%"></i>
-</div>
-
-<small>
-${progress}% concluído • 100 desafios
-</small>
-
-<br><br>
-
-<button class="btn"
-${unlocked?"":"disabled"}>
-${unlocked?"ENTRAR NA FASE":"🔒 BLOQUEADA"}
-</button>
-
-`;
-
-if(unlocked){
-
-div.onclick=()=>openPhase(p.id);
-
-}
-
-grid.appendChild(div);
-
-});
-
-}
-
-
-/* ---------- DESAFIO ---------- */
-
-function openPhase(phase){
-
-currentPhase=phase;
-
-const qs=
-challenges.filter(
-q=>q.phase===phase
-);
-
-let index=0;
-
-while(
-index<qs.length &&
-state.answers[qs[index].id]===true
-){
-
-index++;
-
-}
-
-currentQuestion=index;
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-document.getElementById("content")
-.classList.remove("hidden");
-
-renderQuestion();
-
-}
-
-
-function renderQuestion(){
-
-const qs=
-challenges.filter(
-q=>q.phase===currentPhase
-);
-
-if(currentQuestion>=qs.length){
-
-state.progress[currentPhase]=100;
-
-saveState();
-
-showToast(
-"🏆 Fase concluída!"
-);
-
-renderDashboard();
-
-return;
-
-}
-
-const q=qs[currentQuestion];
-
-const answered=
-state.answers[q.id];
-
-const content=
-document.getElementById("content");
-
-content.innerHTML=`
-
-<div class="card">
-
-<button class="btn"
-onclick="renderDashboard()">
-← VOLTAR
-</button>
-
-<br><br>
-
-<div class="num">
-FASE ${currentPhase}
-• DESAFIO ${q.number}/100
-• ${q.difficulty}
-• +${q.xp} XP
-</div>
-
-<div class="question">
-${q.question}
-</div>
-
-<div class="options">
-
-${q.options.map(
-(o,i)=>`
-
-<button
-class="option
-${answered&&i===q.answer?"correct":""}"
-${answered?"disabled":""}
-onclick="answerQuestion(${i})">
-
-<b>${String.fromCharCode(65+i)}.</b>
-${o}
-
-</button>
-
-`
-).join("")}
-
-</div>
-
-${
-answered
-?
-`
-<div class="explain">
-
-<b>✅ Resposta correta</b>
-
-<br><br>
-
-${q.explanation}
-
-</div>
-
-<br>
-
-<button class="primary"
-onclick="nextQuestion()">
-
-PRÓXIMO DESAFIO →
-
-</button>
-
-`
-:""
-}
-
-</div>
-
-
-<div class="card section">
-
-<b>🎬 Vídeo da aula</b>
-
-<div class="video">
-
-Espaço reservado para o vídeo
-da explicação deste desafio.
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-function answerQuestion(index){
-
-const qs=
-challenges.filter(
-q=>q.phase===currentPhase
-);
-
-const q=qs[currentQuestion];
-
-if(state.answers[q.id])return;
-
-const buttons=
-document.querySelectorAll(".option");
-
-if(index===q.answer){
-
-buttons[index]
-.classList.add("correct");
-
-state.answers[q.id]=true;
-
-state.xp+=q.xp;
-
-const completed=
-Object.values(state.answers)
-.filter(x=>x===true).length;
-
-state.progress[currentPhase]=
-Math.round(
-((currentQuestion+1)/100)*100
-);
-
-checkMedals();
-
-saveState();
-
-showToast(
-"✅ Correto! +"+q.xp+" XP"
-);
 
 }else{
 
-buttons[index]
-.classList.add("wrong");
-
-buttons[q.answer]
-.classList.add("correct");
-
-showToast(
-"❌ Incorreto. A resposta correta foi destacada."
-);
-
-}
-
-renderQuestion();
-
-}
-
-
-function nextQuestion(){
-
-currentQuestion++;
-
-renderQuestion();
-
-}
-
-
-/* ---------- MEDALHAS ---------- */
-
-function checkMedals(){
-
-const done=
-Object.values(state.answers)
-.filter(x=>x===true).length;
-
-if(done>=1 &&
-!state.medals.includes("primeiro")){
-
-state.medals.push("primeiro");
-
-}
-
-if(done>=50 &&
-!state.medals.includes("50")){
-
-state.medals.push("50");
-
-}
-
-if(done>=100 &&
-!state.medals.includes("100")){
-
-state.medals.push("100");
-
-}
-
-if(done>=250 &&
-!state.medals.includes("250")){
-
-state.medals.push("250");
-
-}
-
-if(done>=500 &&
-!state.medals.includes("500")){
-
-state.medals.push("500");
-
-}
-
-}
-
-
-/* ---------- PESQUISA ---------- */
-
-function searchChallenges(){
-
-const text=
-document.getElementById("search")
-.value.toLowerCase()
-.trim();
-
-const result=
-document.getElementById("searchResults");
-
-if(!text){
-
-result.innerHTML="";
+message.innerText=
+"Usuário ou senha incorretos.";
 
 return;
 
 }
 
-const found=
-challenges.filter(q=>
-(
-q.question+
-q.topic+
-q.difficulty
-)
-.toLowerCase()
-.includes(text)
-).slice(0,30);
-
-result.innerHTML=
-found.map(q=>`
-
-<div class="card">
-
-<div class="num">
-FASE ${q.phase} • DESAFIO ${q.number}
-</div>
-
-<h3>${q.question}</h3>
-
-<p>
-${q.difficulty}
-</p>
-
-<button class="btn"
-onclick="openPhase(${q.phase})">
-
-ABRIR FASE
-
-</button>
-
-</div>
-
-`).join("");
-
 }
 
 
-/* ---------- LABORATÓRIO ---------- */
+if(user.active===false){
 
-function openLab(){
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-const content=
-document.getElementById("content");
-
-content.classList.remove("hidden");
-
-content.innerHTML=`
-
-<div class="card">
-
-<button class="btn"
-onclick="renderDashboard()">
-← VOLTAR
-</button>
-
-<h2>💻 Laboratório Simulado</h2>
-
-<p>
-Ambiente controlado para treinamento.
-Os comandos abaixo são apenas simulados.
-</p>
-
-<br>
-
-<div class="terminal"
-id="terminal">
-
-$ Cyber Mafia Lab iniciado.<br>
-$ Digite <b>help</b> para começar.
-
-</div>
-
-<br>
-
-<input
-class="term-input"
-id="terminalInput"
-placeholder="Digite um comando..."
-onkeydown="
-if(event.key==='Enter')runTerminal()
-">
-
-</div>
-
-`;
-
-}
-
-
-function runTerminal(){
-
-const input=
-document.getElementById("terminalInput");
-
-const command=
-input.value.trim().toLowerCase();
-
-const terminal=
-document.getElementById("terminal");
-
-let response="Comando não reconhecido.";
-
-if(command==="help"){
-
-response=
-"Comandos disponíveis: help, whoami, pwd, ls, ip, clear";
-
-}
-
-if(command==="whoami"){
-
-response="student";
-
-}
-
-if(command==="pwd"){
-
-response="/home/student";
-
-}
-
-if(command==="ls"){
-
-response="lab  challenges  notes";
-
-}
-
-if(command==="ip"){
-
-response="192.168.56.10 (SIMULADO)";
-
-}
-
-if(command==="clear"){
-
-terminal.innerHTML="";
-
-input.value="";
+message.innerText=
+"Esta conta está bloqueada.";
 
 return;
 
 }
 
-terminal.innerHTML+=
-"<br>$ "+command+
-"<br>"+response;
-
-input.value="";
-
-}
-
-
-/* ---------- CTF ---------- */
-
-function openCTF(){
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-const content=
-document.getElementById("content");
-
-content.classList.remove("hidden");
-
-content.innerHTML=`
-
-<div class="card">
-
-<button class="btn"
-onclick="renderDashboard()">
-← VOLTAR
-</button>
-
-<h2>🚩 Cyber Mafia CTF</h2>
-
-<p>
-Capture The Flag em ambiente educacional
-e controlado.
-</p>
-
-<br>
-
-<div class="card">
-
-<div class="num">
-CTF 01
-</div>
-
-<h3>
-Investigação Inicial
-</h3>
-
-<p>
-Analise o cenário e identifique qual
-evidência deve ser preservada primeiro.
-</p>
-
-<br>
-
-<button class="primary"
-onclick="showToast('🚩 Desafio CTF registrado!')">
-
-INICIAR DESAFIO
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ---------- CONQUISTAS ---------- */
-
-function openAchievements(){
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-const content=
-document.getElementById("content");
-
-content.classList.remove("hidden");
-
-const medals=[
-
-["⚡","Primeiro Passo","1 desafio"],
-
-["🔥","50 Desafios","50 desafios"],
-
-["💯","Centurião","100 desafios"],
-
-["🏆","Veterano","250 desafios"],
-
-["☠️","Cyber Master","500 desafios"]
-
-];
-
-content.innerHTML=`
-
-<div class="card">
-
-<button class="btn"
-onclick="renderDashboard()">
-← VOLTAR
-</button>
-
-<h2>🏆 Conquistas</h2>
-
-<div class="grid section">
-
-${medals.map(m=>`
-
-<div class="card">
-
-<div class="achievement">
-${m[0]}
-</div>
-
-<h3>${m[1]}</h3>
-
-<p>${m[2]}</p>
-
-</div>
-
-`).join("")}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ---------- SALVAMENTO ---------- */
-
-function saveState(){
 
 localStorage.setItem(
-"cyberMafiaState",
-JSON.stringify(state)
+"cmSession",
+JSON.stringify({
+id:user.id,
+username:user.username
+})
 );
 
-updateStats();
 
-}
+message.style.color="#45ff9a";
 
+message.innerText=
+"Login autorizado. Entrando...";
 
-/* ---------- TOAST ---------- */
-
-function showToast(text){
-
-const toast=
-document.getElementById("toast");
-
-toast.innerText=text;
-
-toast.classList.add("show");
 
 setTimeout(
-()=>toast.classList.remove("show"),
-2500
+()=>{
+window.location.href="painel.html";
+},
+500
 );
 
 }
 
 
-/* ---------- INICIALIZAÇÃO ---------- */
+/* ---------- VERIFICAÇÃO DE SESSÃO ---------- */
 
-generateChallenges();
+const session=
+localStorage.getItem("cmSession");
 
-const saved=
-localStorage.getItem(
-"cyberMafiaUser"
-);
 
-if(saved){
+/*
+Se já estiver logado, o usuário não precisa
+voltar para a tela de login.
+*/
 
-user=JSON.parse(saved);
+if(session){
 
-state=
-JSON.parse(
-localStorage.getItem("cyberMafiaState")
-)
-||
-{
-xp:0,
-answers:{},
-progress:{},
-medals:[]
-};
-
-enterApp();
+/*
+Não redirecionamos automaticamente aqui
+para evitar loops durante a primeira instalação.
+*/
 
 }
 
