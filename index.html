@@ -104,14 +104,14 @@ header{height:auto;padding:13px 4%;gap:8px;flex-wrap:wrap}
 <button class="tab" onclick="showRegister()">CADASTRO</button>
 </div>
 
-<form id="loginForm" class="form">
+<form id="loginForm" class="form" onsubmit="event.preventDefault(); login();">
 <input id="loginUser" placeholder="Usuário" required>
 <input id="loginPass" type="password" placeholder="Senha" required>
 <input id="loginKey" placeholder="Chave individual" required>
 <button class="primary">ENTRAR NA ACADEMIA</button>
 </form>
 
-<form id="registerForm" class="form hidden">
+<form id="registerForm" class="form hidden" onsubmit="event.preventDefault(); register();">
 <input id="regName" placeholder="Nome completo" required>
 <input id="regUser" placeholder="Usuário" required>
 <input id="regPass" type="password" minlength="6" placeholder="Senha" required>
