@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>☠️ Cyber Mafia Professional</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --green:#45ff9a;
+  --green2:#19c96b;
+  --bg:#020604;
+  --panel:#07110b;
+  --panel2:#0b1710;
+  --border:#214d31;
+  --text:#eafff1;
+  --muted:#7e9b88;
+  --red:#ff526d;
+  --gold:#ffd45a;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 50% -10%,#123c25 0,#061009 35%,#020604 75%);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  min-height:65px;
+  padding:12px 4%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  background:rgba(4,11,7,.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  color:var(--green);
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.user-name{
+  color:#b9d8c2;
+  font-size:13px;
+}
+
+.logout{
+  border:1px solid #703043;
+  background:#18080d;
+  color:#ff7185;
+  border-radius:8px;
+  padding:8px 12px;
+}
+
+.container{
+  width:92%;
+  max-width:1200px;
+  margin:25px auto 50px;
+}
+
+.hero{
+  background:linear-gradient(145deg,#0a1910,#061009);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 9px;
+  border:1px solid #285d3a;
+  border-radius:20px;
+  color:var(--green);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.hero h1{
+  margin:12px 0 5px;
+  color:var(--green);
+  font-size:clamp(24px,5vw,38px);
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:22px;
+}
+
+.stat{
+  background:#030805;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  color:var(--green);
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.progress{
+  height:9px;
+  width:100%;
+  background:#142219;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--green2),var(--green));
+  transition:.3s;
+}
+
+.section-title{
+  color:var(--green);
+  margin:30px 0 14px;
+}
+
+.phases{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+
+.phase{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#09150d,#050b07);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+}
+
+.phase:hover{
+  border-color:var(--green);
+}
+
+.phase.locked{
+  opacity:.48;
+}
+
+.phase-icon{
+  font-size:36px;
+}
+
+.phase-number{
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.phase h3{
+  margin:7px 0;
+}
+
+.phase button{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:var(--green);
+  color:#031008;
+  font-weight:900;
+}
+
+.phase button:disabled{
+  background:#27342b;
+  color:#819287;
+}
+
+.video-card{
+  background:#050b07;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
+}
+
+.video{
+  width:100%;
+  aspect-ratio:16/9;
+  border:0;
+  border-radius:10px;
+  background:#010201;
+}
+
+.video-placeholder{
+  width:100%;
+  aspect-ratio:16/9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px dashed #2b5c3c;
+  border-radius:10px;
+  color:var(--muted);
+  padding:20px;
+}
+
+.lesson{
+  background:#08130c;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+  line-height:1.7;
+}
+
+.search{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#030805;
+  color:white;
+  outline:none;
+}
+
+.search:focus{
+  border-color:var(--green);
+}
+
+.results{
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+
+.result{
+  padding:13px;
+  background:#07110b;
+  border:1px solid var(--border);
+  border-radius:9px;
+}
+
+.screen{
+  display:none;
+}
+
+.question-box{
+  background:#08130c;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+}
+
+.back{
+  padding:9px 13px;
+  background:#0c1b11;
+  color:white;
+  border:1px solid #285238;
+  border-radius:8px;
+  margin-bottom:20px;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.question{
+  font-size:21px;
+  line-height:1.65;
+  margin:20px 0;
+}
+
+.options{
+  display:grid;
+  gap:10px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
+  padding:15px;
+  background:#030805;
+  border:1px solid #285238;
+  border-radius:9px;
+  color:var(--text);
+}
+
+.option:hover{
+  border-color:var(--green);
+}
+
+.option.correct{
+  background:#0b321a;
+  border-color:var(--green);
+}
+
+.option.wrong{
+  background:#321018;
+  border-color:var(--red);
+}
+
+.explanation{
+  margin-top:20px;
+  padding:18px;
+  background:#07150c;
+  border-left:3px solid var(--green);
+  line-height:1.7;
+}
+
+.next{
+  margin-top:15px;
+  padding:13px 18px;
+  border:0;
+  border-radius:8px;
+  background:var(--green);
+  color:#031008;
+  font-weight:900;
+}
+
+.ctf{
+  margin-top:20px;
+  padding:18px;
+  border:1px solid #6d5820;
+  background:#171205;
+  border-radius:12px;
+}
+
+.ctf h3{
+  color:var(--gold);
+}
+
+.medals{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+}
+
+.medal{
+  padding:15px;
+  background:#050b07;
+  border:1px solid var(--border);
+  border-radius:10px;
+  text-align:center;
+}
+
+.medal.locked{
+  opacity:.35;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:700px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  header{
+    padding:11px 3%;
+  }
+
+  .user-name{
+    display:none;
+  }
+
+  .container{
+    width:94%;
+  }
+
+  .question{
+    font-size:18px;
+  }
+}
+
+@media(max-width:430px){
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero,.question-box{
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    ☠️ CYBER MAFIA
+  </div>
+
+  <div class="user-area">
+    <span id="userName" class="user-name">Aluno</span>
+
+    <button class="logout" onclick="logout()">
+      SAIR
+    </button>
+  </div>
+
+</header>
+
+<main class="container">
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboard">
+
+  <div class="hero">
+
+    <span class="badge">
+      PROFESSIONAL CYBERSECURITY ACADEMY
+    </span>
+
+    <h1>
+      Painel do Operador
+    </h1>
+
+    <p class="muted">
+      Evolua do nível inicial até os desafios avançados.
+    </p>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong id="xp">0</strong>
+        XP
+      </div>
+
+      <div class="stat">
+        <strong id="level">1</strong>
+        NÍVEL
+      </div>
+
+      <div class="stat">
+        <strong id="completed">0</strong>
+        DESAFIOS
+      </div>
+
+      <div class="stat">
+        <strong id="achievementCount">0</strong>
+        MEDALHAS
+      </div>
+
+    </div>
+
+    <p class="muted">
+      Progresso geral:
+      <span id="percent">0%</span>
+    </p>
+
+    <div class="progress">
+      <div id="globalProgress" class="progress-bar"></div>
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       FASES
+  ========================= -->
+
+  <h2 class="section-title">
+    🌐 5 FASES DA ACADEMIA
+  </h2>
+
+  <div id="phases" class="phases"></div>
+
+
+  <!-- =========================
+       MEDALHAS
+  ========================= -->
+
+  <h2 class="section-title">
+    🏆 Medalhas & Conquistas
+  </h2>
+
+  <div id="medals" class="medals"></div>
+
+
+  <!-- =========================
+       PESQUISA
+  ========================= -->
+
+  <h2 class="section-title">
+    🔎 Pesquisar desafios
+  </h2>
+
+  <input
+    id="search"
+    class="search"
+    placeholder="Pesquise por assunto, desafio ou palavra..."
+    oninput="searchChallenges()">
+
+  <div id="results" class="results"></div>
+
+</section>
+
+
+<!-- =========================
+     FASE
+========================= -->
+
+<section id="phaseScreen" class="screen">
+
+  <button class="back" onclick="backDashboard()">
+    ← VOLTAR
+  </button>
+
+  <div id="phaseContent"></div>
+
+</section>
+
+
+<!-- =========================
+     DESAFIO
+========================= -->
+
+<section id="challengeScreen" class="screen">
+
+  <div class="question-box">
+
+    <button class="back" onclick="backToPhase()">
+      ← VOLTAR PARA A FASE
+    </button>
+
+    <div id="challengeContent"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- BANCO DE DESAFIOS -->
+
+<script src="desafios.js"></script>
+
+
+<script>
+
+/* =====================================================
+   CYBER MAFIA PROFESSIONAL
+   CONTROLE DO PAINEL
+===================================================== */
+
+
+/* =========================
+   SESSÃO
+========================= */
+
+const session =
+  JSON.parse(
+    localStorage.getItem("cmSession") || "null"
+  );
+
+if(!session){
+
+  window.location.href = "index.html";
+
+  throw new Error("Sessão não encontrada.");
+
+}
+
+
+/* =========================
+   USUÁRIO
+========================= */
+
+let users =
+  JSON.parse(
+    localStorage.getItem("cmUsers") || "[]"
+  );
+
+let user =
+  users.find(
+    u => u.id === session.id
+  );
+
+if(!user){
+
+  localStorage.removeItem("cmSession");
+
+  window.location.href = "index.html";
+
+  throw new Error("Usuário não encontrado.");
+
+}
+
+
+/* =========================
+   DADOS PADRÃO
+========================= */
+
+user.xp = user.xp || 0;
+
+user.completed = user.completed || 0;
+
+user.answered = user.answered || {};
+
+user.phaseProgress =
+  user.phaseProgress || {};
+
+user.achievements =
+  user.achievements || [];
+
+
+/* =========================
+   CONTROLE
+========================= */
+
+let currentPhase = 1;
+
+let currentIndex = 0;
+
+
+/* =========================
+   FASES
+========================= */
+
+const phaseData = {
+
+  1:{
+    icon:"🌐",
+    name:"Redes & Fundamentos",
+    description:
+      "Fundamentos de redes, protocolos, endereçamento e arquitetura.",
+    video:"",
+    lesson:
+      "Aprenda os fundamentos necessários para compreender como dispositivos se comunicam em uma rede."
+  },
+
+  2:{
+    icon:"🐧",
+    name:"Linux & Sistemas",
+    description:
+      "Sistemas Linux, terminal, permissões e administração.",
+    video:"",
+    lesson:
+      "Aprenda conceitos de Linux e administração de sistemas em ambientes controlados."
+  },
+
+  3:{
+    icon:"🛡️",
+    name:"Segurança da Informação",
+    description:
+      "Princípios, riscos, defesa, autenticação e proteção.",
+    video:"",
+    lesson:
+      "Aprenda os fundamentos de segurança da informação e proteção de ativos."
+  },
+
+  4:{
+    icon:"⚔️",
+    name:"Hacking Ético & Pentest",
+    description:
+      "Metodologias de testes de segurança em ambientes autorizados.",
+    video:"",
+    lesson:
+      "Aprenda conceitos de pentest e hacking ético dentro de escopos autorizados."
+  },
+
+  5:{
+    icon:"🚩",
+    name:"Laboratório & CTF",
+    description:
+      "Laboratório simulado, análise de cenários e desafios CTF.",
+    video:"",
+    lesson:
+      "Aplique os conhecimentos em ambientes simulados e desafios educacionais."
+  }
+
+};
+
+
+/* =========================
+   SALVAR
+========================= */
+
+function saveUser(){
+
+  const index =
+    users.findIndex(
+      u => u.id === user.id
+    );
+
+  if(index >= 0){
+
+    users[index] = user;
+
+  }
+
+  localStorage.setItem(
+    "cmUsers",
+    JSON.stringify(users)
+  );
+
+}
+
+
+/* =========================
+   DESBLOQUEIO
+========================= */
+
+function phaseUnlocked(phase){
+
+  if(phase === 1)
+    return true;
+
+  return (
+    (user.phaseProgress[phase - 1] || 0) >= 80
+  );
+
+}
+
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+function updateStats(){
+
+  document.getElementById("userName")
+    .textContent =
+    user.username;
+
+  document.getElementById("xp")
+    .textContent =
+    user.xp;
+
+  document.getElementById("level")
+    .textContent =
+    Math.floor(user.xp / 100) + 1;
+
+  document.getElementById("completed")
+    .textContent =
+    user.completed;
+
+  document.getElementById("achievementCount")
+    .textContent =
+    user.achievements.length;
+
+  const percent =
+    Math.min(
+      100,
+      Math.round(
+        user.completed / 500 * 100
+      )
+    );
+
+  document.getElementById("percent")
+    .textContent =
+    percent + "%";
+
+  document.getElementById("globalProgress")
+    .style.width =
+    percent + "%";
+
+}
+
+
+/* =========================
+   RENDER FASES
+========================= */
+
+function renderPhases(){
+
+  const box =
+    document.getElementById("phases");
+
+  box.innerHTML = "";
+
+  for(let phase = 1; phase <= 5; phase++){
+
+    const data =
+      phaseData[phase];
+
+    const unlocked =
+      phaseUnlocked(phase);
+
+    const progress =
+      user.phaseProgress[phase] || 0;
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "phase " +
+      (unlocked ? "" : "locked");
+
+    card.innerHTML = `
+
+      <div class="phase-icon">
+        ${data.icon}
+      </div>
+
+      <div class="phase-number">
+        FASE ${phase}
+      </div>
+
+      <h3>
+        ${data.name}
+      </h3>
+
+      <p class="muted">
+        ${data.description}
+      </p>
+
+      <p>
+        <b>${progress}</b>/100 desafios
+      </p>
+
+      <div class="progress">
+        <div
+          class="progress-bar"
+          style="width:${progress}%">
+        </div>
+      </div>
+
+      <button
+        ${unlocked ? "" : "disabled"}
+        onclick="openPhase(${phase})">
+
+        ${
+          unlocked
+            ? "ENTRAR NA FASE"
+            : "🔒 BLOQUEADA"
+        }
+
+      </button>
+
+    `;
+
+    box.appendChild(card);
+
+  }
+
+}
+
+
+/* =========================
+   ABRIR FASE
+========================= */
+
+function openPhase(phase){
+
+  if(
+    typeof challengesByPhase ===
+    "undefined"
+  ){
+
+    alert(
+      "O banco de desafios ainda não foi carregado."
+    );
+
+    return;
+
+  }
+
+  if(
+    !challengesByPhase[phase] ||
+    !challengesByPhase[phase].length
+  ){
+
+    alert(
+      "Esta fase ainda não possui desafios."
+    );
+
+    return;
+
+  }
+
+  currentPhase = phase;
+
+  showPhaseScreen();
+
+}
+
+
+/* =========================
+   TELA DA FASE
+========================= */
+
+function showPhaseScreen(){
+
+  document
+    .getElementById("dashboard")
+    .classList.add("hidden");
+
+  document
+    .getElementById("challengeScreen")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("phaseScreen")
+    .classList.remove("hidden");
+
+  renderPhase();
+
+}
+
+
+/* =========================
+   RENDER FASE
+========================= */
+
+function renderPhase(){
+
+  const data =
+    phaseData[currentPhase];
+
+  let videoHTML = "";
+
+  if(data.video){
+
+    videoHTML = `
+
+      <iframe
+        class="video"
+        src="${data.video}"
+        title="Aula da fase ${currentPhase}"
+        allowfullscreen>
+      </iframe>
+
+    `;
+
+  }else{
+
+    videoHTML = `
+
+      <div class="video-placeholder">
+
+        🎬
+        <br><br>
+
+        Vídeo da Fase ${currentPhase}
+
+        <br>
+
+        O espaço está preparado
+        para receber a aula em vídeo.
+
+      </div>
+
+    `;
+
+  }
+
+
+  const progress =
+    user.phaseProgress[currentPhase] || 0;
+
+
+  document.getElementById(
+    "phaseContent"
+  ).innerHTML = `
+
+    <div class="hero">
+
+      <span class="badge">
+        ${data.icon} FASE ${currentPhase}
+      </span>
+
+      <h1>
+        ${data.name}
+      </h1>
+
+      <p class="muted">
+        ${data.description}
+      </p>
+
+    </div>
+
+
+    <h2 class="section-title">
+      🎬 Aula da Fase
+    </h2>
+
+    <div class="video-card">
+
+      ${videoHTML}
+
+    </div>
+
+
+    <h2 class="section-title">
+      📖 Conteúdo
+    </h2>
+
+    <div class="lesson">
+      ${data.lesson}
+    </div>
+
+
+    ${
+      currentPhase === 5
+      ? `
+
+        <div class="ctf">
+
+          <h3>
+            🚩 Laboratório & CTF
+          </h3>
+
+          <p>
+            Esta fase será utilizada para
+            desafios práticos e cenários
+            simulados de treinamento.
+          </p>
+
+        </div>
+
+      `
+      : ""
+    }
+
+
+    <h2 class="section-title">
+      🎯 Desafios
+    </h2>
+
+    <div class="phase">
+
+      <p>
+        Progresso:
+        <b>${progress}/100</b>
+      </p>
+
+      <div class="progress">
+        <div
+          class="progress-bar"
+          style="width:${progress}%">
+        </div>
+      </div>
+
+      <button
+        onclick="startPhaseChallenges()">
+
+        CONTINUAR DESAFIOS
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   INICIAR DESAFIOS
+========================= */
+
+function startPhaseChallenges(){
+
+  currentIndex =
+    user.phaseProgress[currentPhase] || 0;
+
+  if(currentIndex >= 100)
+    currentIndex = 99;
+
+  document
+    .getElementById("phaseScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("challengeScreen")
+    .classList.remove("hidden");
+
+  renderChallenge();
+
+}
+
+
+/* =========================
+   RENDER DESAFIO
+========================= */
+
+function renderChallenge(){
+
+  const list =
+    challengesByPhase[currentPhase];
+
+  const q =
+    list[currentIndex];
+
+  if(!q){
+
+    finishPhase();
+
+    return;
+
+  }
+
+  const answered =
+    user.answered[q.id];
+
+  let html = `
+
+    <div class="meta">
+
+      FASE ${currentPhase}
+      • DESAFIO ${currentIndex + 1}/100
+      • DIFICULDADE:
+      ${escapeHTML(q.difficulty || "Normal")}
+      • XP:
+      ${Number(q.xp) || 10}
+
+    </div>
+
+    <div class="question">
+
+      ${escapeHTML(q.question)}
+
+    </div>
+
+    <div class="options">
+
+  `;
+
+
+  for(
+    const letter of
+    ["A","B","C","D","E"]
+  ){
+
+    if(
+      !q.options ||
+      !q.options[letter]
+    )
+      continue;
+
+    let className = "option";
+
+    if(answered){
+
+      if(letter === q.answer)
+        className += " correct";
+
+      if(
+        letter === answered &&
+        letter !== q.answer
+      )
+        className += " wrong";
+
+    }
+
+    html += `
+
+      <button
+        class="${className}"
+        ${answered ? "disabled" : ""}
+        onclick="answerQuestion('${letter}')">
+
+        <b>${letter})</b>
+        ${escapeHTML(q.options[letter])}
+
+      </button>
+
+    `;
+
+  }
+
+
+  html += `</div>`;
+
+
+  if(answered){
+
+    const correct =
+      answered === q.answer;
+
+    html += `
+
+      <div class="explanation">
+
+        <b>
+
+          ${
+            correct
+              ? "✅ RESPOSTA CORRETA"
+              : "❌ RESPOSTA INCORRETA"
+          }
+
+        </b>
+
+        <br><br>
+
+        <b>
+          Gabarito:
+          ${escapeHTML(q.answer)}
+        </b>
+
+        <br><br>
+
+        ${escapeHTML(
+          q.explanation ||
+          "Explicação desta questão."
+        )}
+
+      </div>
+
+
+      <button
+        class="next"
+        onclick="nextQuestion()">
+
+        ${
+          currentIndex === 99
+            ? "🏆 FINALIZAR FASE"
+            : "PRÓXIMO DESAFIO →"
+        }
+
+      </button>
+
+    `;
+
+  }
+
+
+  document.getElementById(
+    "challengeContent"
+  ).innerHTML = html;
+
+}
+
+
+/* =========================
+   RESPONDER
+========================= */
+
+function answerQuestion(letter){
+
+  const q =
+    challengesByPhase
+      [currentPhase]
+      [currentIndex];
+
+  if(user.answered[q.id])
+    return;
+
+  user.answered[q.id] = letter;
+
+
+  if(letter === q.answer){
+
+    user.xp +=
+      Number(q.xp) || 10;
+
+    user.completed++;
+
+  }
+
+
+  user.phaseProgress[currentPhase] =
+
+    challengesByPhase[currentPhase]
+      .filter(
+        item =>
+          user.answered[item.id]
+      )
+      .length;
+
+
+  checkAchievements();
+
+  saveUser();
+
+  updateStats();
+
+  renderChallenge();
+
+}
+
+
+/* =========================
+   PRÓXIMO
+========================= */
+
+function nextQuestion(){
+
+  if(currentIndex >= 99){
+
+    user.phaseProgress[currentPhase] = 100;
+
+    checkAchievements();
+
+    saveUser();
+
+    updateStats();
+
+    alert(
+      "🏆 Fase concluída! A próxima fase foi liberada."
+    );
+
+    backDashboard();
+
+    return;
+
+  }
+
+  currentIndex++;
+
+  renderChallenge();
+
+}
+
+
+/* =========================
+   CONQUISTAS
+========================= */
+
+function checkAchievements(){
+
+  const add = name => {
+
+    if(
+      !user.achievements.includes(name)
+    ){
+
+      user.achievements.push(name);
+
+    }
+
+  };
+
+
+  if(user.completed >= 1)
+    add("🎯 Primeiro Desafio");
+
+  if(user.completed >= 50)
+    add("🔥 50 Desafios");
+
+  if(user.completed >= 100)
+    add("🏅 100 Desafios");
+
+  if(user.completed >= 250)
+    add("⚡ 250 Desafios");
+
+  if(user.completed >= 500)
+    add("👑 Mestre Cyber Mafia");
+
+  for(let phase=1;phase<=5;phase++){
+
+    if(
+      (user.phaseProgress[phase] || 0)
+      >= 100
+    ){
+
+      add(
+        `🏆 Fase ${phase} Concluída`
+      );
+
+    }
+
+  }
+
+}
+
+
+/* =========================
+   MEDALHAS
+========================= */
+
+function renderMedals(){
+
+  const medals =
+    [
+
+      ["🎯","Primeiro Desafio",1],
+
+      ["🔥","50 Desafios",50],
+
+      ["🏅","100 Desafios",100],
+
+      ["⚡","250 Desafios",250],
+
+      ["👑","Mestre Cyber Mafia",500]
+
+    ];
+
+
+  const box =
+    document.getElementById("medals");
+
+  box.innerHTML = "";
+
+
+  medals.forEach(m=>{
+
+    const unlocked =
+      user.completed >= m[2];
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "medal " +
+      (unlocked ? "" : "locked");
+
+    div.innerHTML = `
+
+      <div style="font-size:28px">
+        ${m[0]}
+      </div>
+
+      <b>
+        ${m[1]}
+      </b>
+
+      <br>
+
+      <small class="muted">
+        ${unlocked ? "CONQUISTADA" : "BLOQUEADA"}
+      </small>
+
+    `;
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   PESQUISA
+========================= */
+
+function searchChallenges(){
+
+  const value =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const results =
+    document.getElementById("results");
+
+  results.innerHTML = "";
+
+  if(!value)
+    return;
+
+  if(
+    typeof challenges ===
+    "undefined"
+  )
+    return;
+
+
+  challenges
+    .filter(q =>
+
+      String(q.title || "")
+        .toLowerCase()
+        .includes(value)
+
+      ||
+
+      String(q.question || "")
+        .toLowerCase()
+        .includes(value)
+
+    )
+    .slice(0,20)
+    .forEach(q=>{
+
+      const div =
+        document.createElement("div");
+
+      div.className = "result";
+
+      div.innerHTML = `
+
+        <b>
+          Fase ${q.phase}
+          • Desafio ${q.number}
+        </b>
+
+        <br>
+
+        ${escapeHTML(
+          q.title ||
+          q.question
+        )}
+
+      `;
+
+      results.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================
+   VOLTAR
+========================= */
+
+function backDashboard(){
+
+  document
+    .getElementById("phaseScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("challengeScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("dashboard")
+    .classList.remove("hidden");
+
+  updateStats();
+
+  renderPhases();
+
+  renderMedals();
+
+}
+
+
+function backToPhase(){
+
+  document
+    .getElementById("challengeScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("phaseScreen")
+    .classList.remove("hidden");
+
+  renderPhase();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+  localStorage.removeItem(
+    "cmSession"
+  );
+
+  window.location.href =
+    "index.html";
+
+}
+
+
+/* =========================
+   SEGURANÇA HTML
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+updateStats();
+
+renderPhases();
+
+renderMedals();
+
+</script>
+
+</body>
+</html>
