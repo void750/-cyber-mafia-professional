@@ -1,1 +1,239 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☠️ Cyber Mafia Professional</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #123c29 0%, #07100b 35%, #020504 100%);
+      color: #eafff1;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid #1c4930;
+    }
+    .logo {
+      color: #45ff9a;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-box {
+      width: 100%;
+      max-width: 750px;
+      padding: 45px 25px;
+      border: 1px solid #24583b;
+      border-radius: 24px;
+      background: rgba(8, 17, 12, 0.92);
+      box-shadow: 0 0 60px rgba(69,255,154,.12);
+    }
+    .skull {
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: clamp(32px, 7vw, 64px);
+      color: #45ff9a;
+      margin-bottom: 15px;
+    }
+    .subtitle {
+      color: #8eb69c;
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin: 25px 0;
+    }
+    .feature {
+      padding: 16px;
+      border: 1px solid #1b3d29;
+      border-radius: 12px;
+      background: #09130d;
+    }
+    .feature strong {
+      display: block;
+      color: #45ff9a;
+      margin-bottom: 5px;
+    }
+    .feature span {
+      color: #789784;
+      font-size: 13px;
+    }
+    .start-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      background: #45ff9a;
+      color: #031008;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .start-btn:hover {
+      transform: scale(1.03);
+    }
+    #login {
+      display: none;
+      margin-top: 25px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 6px 0;
+      border-radius: 10px;
+      border: 1px solid #28523a;
+      background: #050b07;
+      color: white;
+      outline: none;
+    }
+    input:focus {
+      border-color: #45ff9a;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 10px;
+      background: #45ff9a;
+      color: #031008;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .demo {
+      margin-top: 18px;
+      color: #718e7c;
+      font-size: 12px;
+    }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #4e6758;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo">☠️ CYBER MAFIA</div>
+  </div>
+</header>
+<main class="hero">
+  <div class="hero-box">
+    <div class="skull">☠️</div>
+    <h1>CYBER MAFIA</h1>
+    <div class="subtitle">
+      PROFESSIONAL CYBERSECURITY ACADEMY
+    </div>
+    <p>
+      Uma jornada interativa do nível iniciante ao avançado
+      em cibersegurança e hacking ético.
+    </p>
+    <div class="features">
+      <div class="feature">
+        <strong>🌐 5 FASES</strong>
+        <span>Jornada progressiva</span>
+      </div>
+      <div class="feature">
+        <strong>🎯 500 DESAFIOS</strong>
+        <span>100 por fase</span>
+      </div>
+      <div class="feature">
+        <strong>⭐ XP & NÍVEIS</strong>
+        <span>Evolução do aluno</span>
+      </div>
+      <div class="feature">
+        <strong>🏆 CONQUISTAS</strong>
+        <span>Medalhas e progresso</span>
+      </div>
+      <div class="feature">
+        <strong>💻 LABORATÓRIO</strong>
+        <span>Ambiente simulado</span>
+      </div>
+      <div class="feature">
+        <strong>🚩 CTF</strong>
+        <span>Desafios práticos</span>
+      </div>
+    </div>
+    <button class="start-btn" onclick="mostrarLogin()">
+      ENTRAR NA ACADEMIA
+    </button>
+    <div id="login">
+      <input
+        id="usuario"
+        type="text"
+        placeholder="Usuário"
+      >
+      <input
+        id="chave"
+        type="text"
+        placeholder="Chave individual"
+      >
+      <button class="login-btn" onclick="entrar()">
+        ACESSAR
+      </button>
+      <div class="demo">
+        Modo demonstração: usuário <b>demo</b>
+        • chave <b>CM-DEMO-2026</b>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  Cyber Mafia Professional © 2026
+</footer>
+<script>
+function mostrarLogin() {
+  document.getElementById("login").style.display = "block";
+  document.querySelector(".start-btn").style.display = "none";
+}
+function entrar() {
+  const usuario =
+    document.getElementById("usuario").value.trim();
+  const chave =
+    document.getElementById("chave").value.trim();
+  if (
+    usuario === "demo" &&
+    chave === "CM-DEMO-2026"
+  ) {
+    localStorage.setItem(
+      "cyberMafiaUser",
+      usuario
+    );
+    window.location.href = "painel.html";
+  } else {
+    alert(
+      "Usuário ou chave inválidos."
+    );
+  }
+}
+</script>
+</body>
+</html>
