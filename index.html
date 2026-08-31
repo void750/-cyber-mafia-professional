@@ -2067,46 +2067,298 @@ for(let phase = 1; phase <= 5; phase++){
 
   challengeBank[phase] = [];
 
-  for(let question = 1; question <= 100; question++){
+ /* =========================================================
+   BANCO DE DESAFIOS — FASE 01
+   ========================================================= */
 
-    const correct =
-      answerKeys[phase][question - 1];
+const phase1Questions = {
 
-    challengeBank[phase].push({
+  21: {
+    question: "Qual protocolo é utilizado para obter automaticamente configurações de rede, como endereço IP?",
+    options: {
+      A: "DNS",
+      B: "DHCP",
+      C: "HTTP",
+      D: "FTP",
+      E: "SSH"
+    },
+    explanation: "O DHCP distribui automaticamente configurações de rede aos dispositivos."
+  },
 
-      id:
-        `${phase}-${question}`,
+  22: {
+    question: "Qual dispositivo normalmente encaminha pacotes entre redes diferentes?",
+    options: {
+      A: "Switch",
+      B: "Hub",
+      C: "Access Point",
+      D: "Modem",
+      E: "Roteador"
+    },
+    explanation: "O roteador encaminha pacotes entre redes diferentes."
+  },
 
-      number:
-        question,
+  23: {
+    question: "Qual protocolo normalmente é usado para traduzir nomes de domínio em endereços IP?",
+    options: {
+      A: "ARP",
+      B: "ICMP",
+      C: "DNS",
+      D: "DHCP",
+      E: "SMTP"
+    },
+    explanation: "O DNS realiza a resolução de nomes de domínio para endereços IP."
+  },
 
-      question:
-        `Desafio ${question} da Fase ${phase}: selecione a alternativa correta.`,
+  24: {
+    question: "Qual protocolo é tradicionalmente associado ao envio de mensagens de e-mail entre servidores?",
+    options: {
+      A: "FTP",
+      B: "SMTP",
+      C: "SSH",
+      D: "SNMP",
+      E: "ARP"
+    },
+    explanation: "SMTP é utilizado para envio e encaminhamento de e-mails."
+  },
 
-      options:{
+  25: {
+    question: "Qual protocolo é usado para descobrir o endereço MAC associado a um endereço IPv4 na rede local?",
+    options: {
+      A: "DNS",
+      B: "DHCP",
+      C: "ICMP",
+      D: "ARP",
+      E: "HTTP"
+    },
+    explanation: "O ARP associa endereços IPv4 aos respectivos endereços MAC."
+  },
 
-        A:"Alternativa de treinamento A",
+  26: {
+    question: "Qual protocolo é utilizado pelo comando ping para testar a conectividade de rede?",
+    options: {
+      A: "TCP",
+      B: "UDP",
+      C: "ICMP",
+      D: "FTP",
+      E: "DNS"
+    },
+    explanation: "O ping utiliza mensagens ICMP para verificar conectividade."
+  },
 
-        B:"Alternativa de treinamento B",
+  27: {
+    question: "Qual camada do modelo OSI está relacionada ao endereçamento lógico por IP?",
+    options: {
+      A: "Física",
+      B: "Rede",
+      C: "Enlace",
+      D: "Sessão",
+      E: "Aplicação"
+    },
+    explanation: "A camada de Rede trabalha com endereçamento lógico e roteamento."
+  },
 
-        C:"Alternativa de treinamento C",
+  28: {
+    question: "Qual protocolo fornece uma conexão orientada a conexão e confiável para aplicações?",
+    options: {
+      A: "UDP",
+      B: "ICMP",
+      C: "ARP",
+      D: "TCP",
+      E: "DNS"
+    },
+    explanation: "O TCP oferece comunicação orientada a conexão e mecanismos de confiabilidade."
+  },
 
-        D:"Alternativa de treinamento D",
+  29: {
+    question: "Qual endereço representa normalmente a interface de loopback IPv4?",
+    options: {
+      A: "192.168.0.1",
+      B: "10.0.0.1",
+      C: "172.16.0.1",
+      D: "255.255.255.255",
+      E: "127.0.0.1"
+    },
+    explanation: "127.0.0.1 é o endereço IPv4 tradicional de loopback."
+  },
 
-        E:"Alternativa de treinamento E"
+  30: {
+    question: "Qual protocolo é utilizado para acesso remoto seguro a um sistema por linha de comando?",
+    options: {
+      A: "SSH",
+      B: "Telnet",
+      C: "FTP",
+      D: "HTTP",
+      E: "TFTP"
+    },
+    explanation: "SSH fornece acesso remoto criptografado."
+  },
 
-      },
+  31: {
+    question: "Qual equipamento conecta dispositivos dentro da mesma rede local usando endereços MAC?",
+    options: {
+      A: "Switch",
+      B: "Roteador",
+      C: "Modem",
+      D: "Firewall",
+      E: "Servidor DNS"
+    },
+    explanation: "Switches encaminham quadros utilizando endereços MAC."
+  },
 
-      answer:
-        correct,
+  32: {
+    question: "Qual protocolo é utilizado para sincronização de horário em sistemas de rede?",
+    options: {
+      A: "SMTP",
+      B: "FTP",
+      C: "HTTP",
+      D: "NTP",
+      E: "POP3"
+    },
+    explanation: "NTP é utilizado para sincronização de relógios."
+  },
 
-      explanation:
-        `A resposta correta deste desafio é a alternativa ${correct}.`
+  33: {
+    question: "Qual máscara corresponde normalmente a uma rede IPv4 /24?",
+    options: {
+      A: "255.255.0.0",
+      B: "255.255.255.0",
+      C: "255.0.0.0",
+      D: "255.255.255.252",
+      E: "255.255.255.128"
+    },
+    explanation: "Uma rede /24 utiliza 255.255.255.0."
+  },
 
-    });
+  34: {
+    question: "Qual protocolo é usado para transferência de arquivos entre sistemas?",
+    options: {
+      A: "FTP",
+      B: "DNS",
+      C: "ICMP",
+      D: "ARP",
+      E: "NTP"
+    },
+    explanation: "FTP é um protocolo tradicional de transferência de arquivos."
+  },
 
+  35: {
+    question: "Qual porta TCP é tradicionalmente associada ao HTTPS?",
+    options: {
+      A: "21",
+      B: "22",
+      C: "53",
+      D: "80",
+      E: "443"
+    },
+    explanation: "HTTPS utiliza tradicionalmente a porta TCP 443."
+  },
+
+  36: {
+    question: "Qual protocolo é usado para acessar páginas web sem TLS?",
+    options: {
+      A: "HTTPS",
+      B: "HTTP",
+      C: "SSH",
+      D: "SFTP",
+      E: "SNMP"
+    },
+    explanation: "HTTP é utilizado para transferência tradicional de páginas web."
+  },
+
+  37: {
+    question: "Qual faixa corresponde a endereços IPv4 privados?",
+    options: {
+      A: "8.8.8.0/24",
+      B: "172.32.0.0/16",
+      C: "192.0.2.0/24",
+      D: "169.254.0.0/16",
+      E: "192.168.0.0/16"
+    },
+    explanation: "192.168.0.0/16 é uma faixa privada IPv4."
+  },
+
+  38: {
+    question: "Qual comando Linux pode mostrar endereços e interfaces de rede?",
+    options: {
+      A: "ip addr",
+      B: "mkdir",
+      C: "chmod",
+      D: "passwd",
+      E: "history"
+    },
+    explanation: "ip addr exibe informações sobre interfaces e endereços."
+  },
+
+  39: {
+    question: "Como é chamada a divisão de uma rede IP em redes menores?",
+    options: {
+      A: "NAT",
+      B: "VLAN",
+      C: "DNS",
+      D: "Subnetting",
+      E: "DHCP"
+    },
+    explanation: "Subnetting divide uma rede IP em sub-redes menores."
+  },
+
+  40: {
+    question: "Qual tecnologia permite que vários dispositivos privados compartilhem um endereço IPv4 público?",
+    options: {
+      A: "NAT",
+      B: "ARP",
+      C: "ICMP",
+      D: "NTP",
+      E: "SNMP"
+    },
+    explanation: "NAT realiza a tradução entre endereços privados e públicos."
   }
 
+};
+
+
+/* =========================================================
+   MONTAR FASE 01
+   ========================================================= */
+
+challengeBank[1] = [];
+
+for(let i = 1; i <= 100; i++){
+
+  const data = phase1Questions[i] || {
+
+    question:
+      `Desafio ${i} da Fase 01 — Redes`,
+
+    options: {
+      A: "Alternativa A",
+      B: "Alternativa B",
+      C: "Alternativa C",
+      D: "Alternativa D",
+      E: "Alternativa E"
+    },
+
+    explanation:
+      "Desafio de treinamento Cyber Mafia."
+
+  };
+
+  challengeBank[1].push({
+
+    id: `1-${i}`,
+
+    number: i,
+
+    question: data.question,
+
+    options: data.options,
+
+    answer: answerKeys[1][i - 1],
+
+    explanation: data.explanation
+
+  });
+
+} 
 }
 
 
