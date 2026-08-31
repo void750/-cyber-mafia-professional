@@ -1,685 +1,770 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050907">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>☠️ Cyber Mafia Professional</title>
+<title>Cyber Mafia Professional</title>
 
 <style>
 
+:root{
+  --bg:#050907;
+  --panel:#0b1410;
+  --panel2:#0e1b15;
+  --line:#173b29;
+  --green:#45ff9a;
+  --green2:#19c878;
+  --text:#e8fff2;
+  --muted:#8eae9d;
+  --red:#ff5570;
+  --yellow:#ffd166;
+}
+
 *{
-box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 body{
-
-margin:0;
-min-height:100vh;
-
-font-family:
-Arial,
-Helvetica,
-sans-serif;
-
-color:#eafff1;
-
-background:
-radial-gradient(
-circle at top,
-#123b27 0,
-#06100a 35%,
-#020403 80%
-);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-padding:20px;
-
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(
+      circle at top,
+      #0d2419 0,
+      #050907 45%,
+      #020403 100%
+    );
+  color:var(--text);
+  font-family:
+    Inter,
+    system-ui,
+    Arial,
+    sans-serif;
 }
 
-.container{
-
-width:100%;
-max-width:460px;
-
-}
-
-.logo{
-
-text-align:center;
-
-margin-bottom:25px;
-
-}
-
-.logo .skull{
-
-font-size:55px;
-
-}
-
-.logo h1{
-
-margin:5px 0;
-
-color:#45ff9a;
-
-font-size:32px;
-
-letter-spacing:3px;
-
-}
-
-.logo p{
-
-margin:0;
-
-color:#789684;
-
-font-size:12px;
-
-letter-spacing:2px;
-
-}
-
-.card{
-
-background:
-rgba(7,18,11,.96);
-
-border:1px solid #245c39;
-
-border-radius:18px;
-
-padding:25px;
-
-box-shadow:
-0 20px 60px
-rgba(0,0,0,.5);
-
-}
-
-.tabs{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:8px;
-
-margin-bottom:20px;
-
-}
-
-.tab{
-
-padding:12px;
-
-background:#081109;
-
-border:1px solid #234c31;
-
-border-radius:8px;
-
-color:#83a18d;
-
-font-weight:bold;
-
-}
-
-.tab.active{
-
-background:#10341d;
-
-border-color:#45ff9a;
-
-color:#45ff9a;
-
-}
-
-.form{
-
-display:grid;
-
-gap:13px;
-
-}
-
-label{
-
-font-size:11px;
-
-color:#7da38b;
-
-}
-
+button,
 input{
-
-width:100%;
-
-padding:14px;
-
-margin-top:5px;
-
-background:#030704;
-
-border:1px solid #254b32;
-
-border-radius:9px;
-
-color:white;
-
-outline:none;
-
+  font:inherit;
 }
 
-input:focus{
-
-border-color:#45ff9a;
-
-}
-
-.primary{
-
-width:100%;
-
-padding:14px;
-
-border:0;
-
-border-radius:9px;
-
-background:#45ff9a;
-
-color:#031008;
-
-font-weight:bold;
-
-cursor:pointer;
-
-margin-top:5px;
-
-}
-
-.primary:hover{
-
-filter:brightness(1.1);
-
-}
-
-.message{
-
-min-height:20px;
-
-margin-top:15px;
-
-text-align:center;
-
-font-size:13px;
-
-}
-
-.info{
-
-margin-top:20px;
-
-padding:13px;
-
-background:#06100a;
-
-border-left:3px solid #45ff9a;
-
-color:#789684;
-
-font-size:11px;
-
-line-height:1.6;
-
-}
-
-.footer{
-
-text-align:center;
-
-margin-top:18px;
-
-font-size:10px;
-
-color:#50695a;
-
+button{
+  cursor:pointer;
 }
 
 .hidden{
+  display:none!important;
+}
 
-display:none;
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+
+  background:rgba(5,9,7,.94);
+  backdrop-filter:blur(12px);
+
+  border-bottom:1px solid var(--line);
+
+  padding:14px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
+}
+
+.logo{
+  font-weight:900;
+  letter-spacing:2px;
+  color:var(--green);
+}
+
+.logo span{
+  color:#fff;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.pill{
+  border:1px solid var(--line);
+  background:#09120e;
+  padding:7px 10px;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.pill b{
+  color:var(--green);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:22px 16px 50px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14,27,21,.97),
+      rgba(7,14,10,.97)
+    );
+
+  border:1px solid var(--line);
+
+  border-radius:18px;
+
+  box-shadow:
+    0 12px 35px #0007;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.auth{
+  max-width:480px;
+  margin:7vh auto;
+  padding:28px;
+}
+
+.auth h1{
+  font-size:30px;
+  margin:10px 0 6px;
+}
+
+.auth p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+input{
+  width:100%;
+
+  padding:13px 14px;
+
+  background:#040a07;
+
+  border:1px solid var(--line);
+
+  color:#fff;
+
+  border-radius:10px;
+
+  outline:none;
+
+  margin:7px 0;
+}
+
+input:focus{
+  border-color:var(--green);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  border:1px solid var(--green);
+
+  background:#0b2116;
+
+  color:var(--green);
+
+  padding:11px 14px;
+
+  border-radius:10px;
+
+  font-weight:800;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  background:#10321f;
+}
+
+.btn.primary{
+  background:var(--green);
+  color:#031008;
+}
+
+.btn.danger{
+  border-color:var(--red);
+  color:var(--red);
+  background:#260b12;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  padding:24px;
+  margin-bottom:16px;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:30px;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:14px;
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:12px;
+
+  margin:16px 0;
+}
+
+.stat{
+  padding:16px;
+}
+
+.stat small{
+  color:var(--muted);
+}
+
+.stat strong{
+  display:block;
+
+  font-size:26px;
+
+  color:var(--green);
+
+  margin-top:5px;
+}
+
+/* =========================
+   FASES
+========================= */
+
+.phase{
+  padding:18px;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.phase:hover{
+  transform:translateY(-2px);
+
+  border-color:#2b6b4a;
+}
+
+.phase h3{
+  margin:0 0 6px;
+}
+
+.phase p{
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.5;
+}
+
+.tag{
+  display:inline-block;
+
+  padding:5px 8px;
+
+  border-radius:999px;
+
+  background:#0b2518;
+
+  color:var(--green);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  margin-bottom:10px;
+}
+
+.locked{
+  opacity:.55;
+
+  cursor:not-allowed;
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.bar{
+  height:10px;
+
+  background:#020604;
+
+  border-radius:99px;
+
+  overflow:hidden;
+
+  border:1px solid var(--line);
+}
+
+.bar i{
+  display:block;
+
+  height:100%;
+
+  background:var(--green);
+
+  width:0%;
+
+  transition:.3s;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  display:flex;
+
+  gap:8px;
+
+  overflow:auto;
+
+  margin-bottom:15px;
+}
+
+/* =========================
+   DESAFIO
+========================= */
+
+.challenge{
+  padding:22px;
+}
+
+.challenge-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  margin-bottom:14px;
+}
+
+.question{
+  font-size:21px;
+
+  line-height:1.45;
+
+  margin-bottom:18px;
+}
+
+.options{
+  display:grid;
+
+  gap:10px;
+}
+
+.option{
+  text-align:left;
+
+  border:1px solid var(--line);
+
+  background:#07100b;
+
+  color:#dfffee;
+
+  padding:14px;
+
+  border-radius:12px;
+}
+
+.option:hover{
+  border-color:var(--green);
+}
+
+.option.correct{
+  border-color:var(--green);
+
+  background:#0d2c1c;
+}
+
+.option.wrong{
+  border-color:var(--red);
+
+  background:#2a0d14;
+}
+
+.feedback{
+  margin-top:16px;
+
+  padding:13px;
+
+  border-radius:12px;
+
+  line-height:1.5;
+}
+
+.feedback.ok{
+  border:1px solid #1c8b57;
+
+  background:#092418;
+}
+
+.feedback.no{
+  border:1px solid #9e3047;
+
+  background:#250b12;
+}
+
+.challenge-actions{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:8px;
+
+  margin-top:16px;
+}
+
+.explain{
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+/* =========================
+   TERMINAL
+========================= */
+
+.terminal{
+  padding:18px;
+
+  margin-top:16px;
+}
+
+.terminal pre{
+  background:#020403;
+
+  border:1px solid #123421;
+
+  border-radius:12px;
+
+  padding:15px;
+
+  min-height:90px;
+
+  color:#8effbd;
+
+  white-space:pre-wrap;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badges{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+}
+
+.badge{
+  border:1px solid var(--line);
+
+  border-radius:12px;
+
+  padding:9px 11px;
+
+  background:#07100b;
+
+  color:var(--muted);
+}
+
+.badge.on{
+  color:var(--green);
+
+  border-color:var(--green);
+}
+
+.section-title{
+  margin:22px 0 12px;
+}
+
+.small{
+  font-size:12px;
+
+  color:var(--muted);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:800px){
+
+  .grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .stats{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .question{
+    font-size:18px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:
+      14px
+      10px
+      35px;
+  }
+
+  .header-actions
+  .pill:first-child{
+    display:none;
+  }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<div class="container">
-
-
-<div class="logo">
-
-<div class="skull">
-☠️
-</div>
-
-<h1>
-CYBER MAFIA
-</h1>
-
-<p>
-PROFESSIONAL CYBERSECURITY ACADEMY
-</p>
-
-</div>
-
-
-<div class="card">
-
-
-<div class="tabs">
-
-<button
-id="loginTab"
-class="tab active"
-onclick="showLogin()">
-
-ENTRAR
-
-</button>
-
-
-<button
-id="registerTab"
-class="tab"
-onclick="showRegister()">
-
-CADASTRO
-
-</button>
-
-</div>
-
-
-<!-- LOGIN -->
-
-<form
-id="loginForm"
-class="form"
-onsubmit="login(event)">
-
-<div>
-
-<label>
-USUÁRIO
-</label>
-
-<input
-id="loginUser"
-type="text"
-placeholder="Digite seu usuário"
-required>
-
-</div>
-
-
-<div>
-
-<label>
-SENHA
-</label>
-
-<input
-id="loginPassword"
-type="password"
-placeholder="Digite sua senha"
-required>
-
-</div>
-
-
-<button
-class="primary"
-type="submit">
-
-ENTRAR NA ACADEMIA
-
-</button>
-
-</form>
-
-
-<!-- CADASTRO -->
-
-<form
-id="registerForm"
-class="form hidden"
-onsubmit="register(event)">
-
-<div>
-
-<label>
-USUÁRIO
-</label>
-
-<input
-id="registerUser"
-type="text"
-placeholder="Crie seu usuário"
-required>
-
-</div>
-
-
-<div>
-
-<label>
-SENHA
-</label>
-
-<input
-id="registerPassword"
-type="password"
-placeholder="Crie sua senha"
-required>
-
-</div>
-
-
-<div>
-
-<label>
-CONFIRMAR SENHA
-</label>
-
-<input
-id="registerPassword2"
-type="password"
-placeholder="Digite a senha novamente"
-required>
-
-</div>
-
-
-<button
-class="primary"
-type="submit">
-
-CRIAR CONTA
-
-</button>
-
-</form>
-
-
-<div
-id="message"
-class="message">
-</div>
-
-
-<div class="info">
-
-☠️ <b>Cyber Mafia Professional</b><br><br>
-
-Academia educacional de cibersegurança com
-desafios, XP, níveis, laboratório e CTF.
-
-<br><br>
-
-Use somente para aprendizado e em
-ambientes autorizados.
-
-</div>
-
-</div>
-
-
-<div class="footer">
-
-CYBER MAFIA • TRAIN • LEARN • DEFEND
-
-</div>
-
-
-</div>
-
+<div id="app"></div>
 
 <script>
 
-
-/* =========================
-   ELEMENTOS
-========================= */
-
-const loginForm=
-document.getElementById("loginForm");
-
-const registerForm=
-document.getElementById("registerForm");
-
-const loginTab=
-document.getElementById("loginTab");
-
-const registerTab=
-document.getElementById("registerTab");
-
-const message=
-document.getElementById("message");
+/* =========================================================
+   CYBER MAFIA PROFESSIONAL
+   SISTEMA PRINCIPAL
+   ========================================================= */
 
 
 /* =========================
-   TROCAR PARA LOGIN
+   CONFIGURAÇÃO
 ========================= */
 
-function showLogin(){
+const TOTAL_PHASES = 5;
 
-loginForm.classList.remove("hidden");
+const QUESTIONS_PER_PHASE = 100;
 
-registerForm.classList.add("hidden");
+const TOTAL_CHALLENGES =
+  TOTAL_PHASES *
+  QUESTIONS_PER_PHASE;
 
-loginTab.classList.add("active");
 
-registerTab.classList.remove("active");
+/* =========================
+   FASES
+========================= */
 
-message.textContent="";
+const PHASES = [
+
+  {
+    id:1,
+    name:"Redes",
+    description:
+      "Fundamentos de redes, protocolos, IP, portas e diagnóstico.",
+    difficulty:"INICIANTE"
+  },
+
+  {
+    id:2,
+    name:"Linux",
+    description:
+      "Terminal, comandos, permissões, processos e administração.",
+    difficulty:"BÁSICO"
+  },
+
+  {
+    id:3,
+    name:"Segurança",
+    description:
+      "Princípios de segurança, autenticação, defesa e incidentes.",
+    difficulty:"INTERMEDIÁRIO"
+  },
+
+  {
+    id:4,
+    name:"Hacking Ético",
+    description:
+      "Pentest autorizado, metodologia, escopo e documentação.",
+    difficulty:"AVANÇADO"
+  },
+
+  {
+    id:5,
+    name:"Laboratório & CTF",
+    description:
+      "Desafios práticos em ambientes controlados e autorizados.",
+    difficulty:"PROFISSIONAL"
+  }
+
+];
+
+
+/* =========================
+   SESSÃO
+========================= */
+
+let session =
+  JSON.parse(
+    localStorage.getItem(
+      "cmSession"
+    ) || "null"
+  );
+
+
+/* =========================
+   USUÁRIO
+========================= */
+
+let users =
+  JSON.parse(
+    localStorage.getItem(
+      "cmUsers"
+    ) || "[]"
+  );
+
+
+let user =
+  session
+    ? users.find(
+        u =>
+          u.id === session.id
+      )
+    : null;
+
+
+/* =========================
+   DADOS DO USUÁRIO
+========================= */
+
+if(user){
+
+  user.xp =
+    user.xp || 0;
+
+  user.completed =
+    user.completed || 0;
+
+  user.answered =
+    user.answered || {};
+
+  user.phaseProgress =
+    user.phaseProgress || {};
+
+  user.achievements =
+    user.achievements || [];
 
 }
 
 
 /* =========================
-   TROCAR PARA CADASTRO
+   ESTADO
 ========================= */
 
-function showRegister(){
+let currentPhase = 1;
 
-loginForm.classList.add("hidden");
+let currentQuestion = 1;
 
-registerForm.classList.remove("hidden");
+let currentView =
+  "dashboard";
 
-loginTab.classList.remove("active");
+let currentFeedback =
+  null;
 
-registerTab.classList.add("active");
 
-message.textContent="";
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
 
-}
+function saveUser(){
 
+  if(!user)
+    return;
 
-/* =========================
-   HASH DA SENHA
-========================= */
+  const index =
+    users.findIndex(
+      u =>
+        u.id === user.id
+    );
 
-async function hashPassword(password){
+  if(index !== -1){
 
-const data=
-new TextEncoder()
-.encode(password);
+    users[index] =
+      user;
 
-const hash=
-await crypto.subtle.digest(
-"SHA-256",
-data
-);
+    localStorage.setItem(
+      "cmUsers",
+      JSON.stringify(users)
+    );
 
-return Array
-.from(new Uint8Array(hash))
-.map(
-b=>b.toString(16).padStart(2,"0")
-)
-.join("");
-
-}
-
-
-/* =========================
-   CADASTRO
-========================= */
-
-async function register(event){
-
-event.preventDefault();
-
-const username=
-document
-.getElementById("registerUser")
-.value
-.trim()
-.toLowerCase();
-
-const password=
-document
-.getElementById("registerPassword")
-.value;
-
-const password2=
-document
-.getElementById("registerPassword2")
-.value;
-
-
-if(username.length<3){
-
-message.textContent=
-"❌ O usuário precisa ter pelo menos 3 caracteres.";
-
-return;
-
-}
-
-
-if(password.length<4){
-
-message.textContent=
-"❌ A senha precisa ter pelo menos 4 caracteres.";
-
-return;
-
-}
-
-
-if(password!==password2){
-
-message.textContent=
-"❌ As senhas não são iguais.";
-
-return;
-
-}
-
-
-const users=
-JSON.parse(
-localStorage.getItem("cmUsers")||"[]"
-);
-
-
-if(
-users.some(
-u=>u.username===username
-)
-){
-
-message.textContent=
-"❌ Este usuário já existe.";
-
-return;
-
-}
-
-
-const passwordHash=
-await hashPassword(password);
-
-
-const user={
-
-id:
-"CM-"+Date.now(),
-
-username:username,
-
-passwordHash:passwordHash,
-
-xp:0,
-
-completed:0,
-
-answered:{},
-
-phaseProgress:{},
-
-createdAt:
-new Date().toISOString()
-
-};
-
-
-users.push(user);
-
-
-localStorage.setItem(
-"cmUsers",
-JSON.stringify(users)
-);
-
-
-message.textContent=
-"✅ Conta criada! Entrando...";
-
-
-localStorage.setItem(
-"cmSession",
-JSON.stringify({
-id:user.id,
-username:user.username
-})
-);
-
-
-setTimeout(
-()=>{
-window.location.href="painel.html";
-},
-500
-);
+  }
 
 }
 
@@ -688,83 +773,1148 @@ window.location.href="painel.html";
    LOGIN
 ========================= */
 
-async function login(event){
+function showLogin(){
 
-event.preventDefault();
+  document.body.innerHTML = `
 
-const username=
-document
-.getElementById("loginUser")
-.value
-.trim()
-.toLowerCase();
+    <div class="container">
 
-const password=
-document
-.getElementById("loginPassword")
-.value;
+      <div class="card auth">
 
+        <div class="logo">
+          ☠ CYBER
+          <span>MAFIA</span>
+        </div>
 
-const passwordHash=
-await hashPassword(password);
+        <h1>
+          Academia Professional
+        </h1>
 
+        <p>
+          Entre no sistema para
+          acessar seu treinamento.
+        </p>
 
-const users=
-JSON.parse(
-localStorage.getItem("cmUsers")||"[]"
-);
+        <input
+          id="username"
+          placeholder="Nome de usuário"
+        >
 
+        <input
+          id="accessKey"
+          placeholder="Chave de acesso"
+        >
 
-const user=
-users.find(
-u=>
-u.username===username &&
-u.passwordHash===passwordHash
-);
+        <button
+          class="btn primary"
+          style="width:100%;margin-top:8px"
+          onclick="login()"
+        >
+          ENTRAR NO SISTEMA
+        </button>
 
+        <p class="small">
+          Sistema de demonstração local.
+        </p>
 
-if(!user){
+      </div>
 
-message.textContent=
-"❌ Usuário ou senha incorretos.";
+    </div>
 
-return;
-
-}
-
-
-localStorage.setItem(
-"cmSession",
-JSON.stringify({
-id:user.id,
-username:user.username
-})
-);
-
-
-message.textContent=
-"✅ Login realizado. Entrando...";
-
-
-setTimeout(
-()=>{
-window.location.href="painel.html";
-},
-400
-);
+  `;
 
 }
 
 
 /* =========================
-   INICIALIZAÇÃO
+   LOGIN
 ========================= */
 
-showLogin();
+function login(){
+
+  const username =
+    document
+      .getElementById(
+        "username"
+      )
+      .value
+      .trim();
+
+  const key =
+    document
+      .getElementById(
+        "accessKey"
+      )
+      .value
+      .trim();
+
+
+  if(
+    !username ||
+    !key
+  ){
+
+    alert(
+      "Preencha usuário e chave."
+    );
+
+    return;
+
+  }
+
+
+  let existing =
+    users.find(
+      u =>
+        u.username
+          .toLowerCase()
+        ===
+        username
+          .toLowerCase()
+    );
+
+
+  if(existing){
+
+    if(
+      existing.key !== key
+    ){
+
+      alert(
+        "Chave de acesso inválida."
+      );
+
+      return;
+
+    }
+
+    user =
+      existing;
+
+  }else{
+
+    user = {
+
+      id:
+        Date.now()
+        .toString(),
+
+      username:
+
+        username,
+
+      key:
+
+        key,
+
+      xp:0,
+
+      completed:0,
+
+      answered:{},
+
+      phaseProgress:{},
+
+      achievements:[]
+
+    };
+
+
+    users.push(
+      user
+    );
+
+  }
+
+
+  session = {
+
+    id:
+      user.id
+
+  };
+
+
+  localStorage.setItem(
+    "cmSession",
+    JSON.stringify(
+      session
+    )
+  );
+
+
+  saveUser();
+
+
+  render();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+  localStorage.removeItem(
+    "cmSession"
+  );
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   PROGRESSO
+   ========================================================= */
+
+function getTotalCompleted(){
+
+  if(!user)
+    return 0;
+
+  return Object.keys(
+    user.answered
+  ).filter(
+    id =>
+      user.answered[id]
+      === true
+  ).length;
+
+}
+
+
+function getPhaseCompleted(
+  phase
+){
+
+  let count = 0;
+
+
+  for(
+    let i=1;
+    i<=100;
+    i++
+  ){
+
+    const id =
+      phase +
+      "-" +
+      i;
+
+    if(
+      user.answered[id]
+      === true
+    ){
+
+      count++;
+
+    }
+
+  }
+
+
+  return count;
+
+}
+
+
+function getPhasePercent(
+  phase
+){
+
+  return Math.round(
+
+    (
+      getPhaseCompleted(
+        phase
+      )
+      /
+      100
+    )
+    *
+    100
+
+  );
+
+}
+
+
+function isPhaseUnlocked(
+  phase
+){
+
+  if(
+    phase === 1
+  )
+    return true;
+
+
+  return (
+    getPhaseCompleted(
+      phase - 1
+    )
+    >= 100
+  );
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+function setView(
+  view
+){
+
+  currentView =
+    view;
+
+  render();
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+function header(){
+
+  return `
+
+    <header>
+
+      <div class="logo">
+        ☠ CYBER
+        <span>MAFIA</span>
+      </div>
+
+      <div class="header-actions">
+
+        <div class="pill">
+          👤
+          <b>
+            ${user.username}
+          </b>
+        </div>
+
+        <div class="pill">
+          ⚡
+          <b>
+            ${user.xp}
+            XP
+          </b>
+        </div>
+
+        <button
+          class="btn danger"
+          onclick="logout()"
+        >
+          SAIR
+        </button>
+
+      </div>
+
+    </header>
+
+  `;
+
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+function menu(){
+
+  return `
+
+    <div class="nav">
+
+      <button
+        class="btn"
+        onclick="setView('dashboard')"
+      >
+        🏠 Painel
+      </button>
+
+      <button
+        class="btn"
+        onclick="setView('progress')"
+      >
+        📊 Progresso
+      </button>
+
+      <button
+        class="btn"
+        onclick="setView('lab')"
+      >
+        🖥️ Laboratório
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PAINEL
+   ========================================================= */
+
+function dashboard(){
+
+  const completed =
+    getTotalCompleted();
+
+  const percent =
+    Math.round(
+
+      (
+        completed /
+        TOTAL_CHALLENGES
+      )
+      *
+      100
+
+    );
+
+
+  return `
+
+    ${menu()}
+
+    <section
+      class="card hero"
+    >
+
+      <div class="logo">
+        ACCESS GRANTED
+      </div>
+
+      <h1>
+        Bem-vindo,
+        ${user.username}
+      </h1>
+
+      <p>
+        Sua jornada Cyber Mafia
+        começa aqui.
+        Complete as 5 fases e
+        domine os 500 desafios.
+      </p>
+
+      <div
+        style="margin-top:18px"
+      >
+
+        <div class="small">
+
+          ${completed}
+          /
+          ${TOTAL_CHALLENGES}
+
+          desafios concluídos
+
+          —
+          ${percent}%
+
+        </div>
+
+        <div class="bar">
+
+          <i
+            style="
+              width:${percent}%
+            "
+          ></i>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="stats">
+
+      <div class="card stat">
+
+        <small>
+          XP
+        </small>
+
+        <strong>
+          ${user.xp}
+        </strong>
+
+      </div>
+
+
+      <div class="card stat">
+
+        <small>
+          Desafios
+        </small>
+
+        <strong>
+          ${completed}
+        </strong>
+
+      </div>
+
+
+      <div class="card stat">
+
+        <small>
+          Fases
+        </small>
+
+        <strong>
+          ${PHASES.filter(
+            p =>
+              getPhaseCompleted(
+                p.id
+              ) >= 100
+          ).length
+          }/5
+        </strong>
+
+      </div>
+
+
+      <div class="card stat">
+
+        <small>
+          Nível
+        </small>
+
+        <strong>
+          ${
+            Math.floor(
+              user.xp / 100
+            ) + 1
+          }
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <h2
+      class="section-title"
+    >
+      ☠️ Fases do treinamento
+    </h2>
+
+
+    <div class="grid">
+
+      ${PHASES.map(
+        phase => {
+
+          const unlocked =
+            isPhaseUnlocked(
+              phase.id
+            );
+
+          const percent =
+            getPhasePercent(
+              phase.id
+            );
+
+          return `
+
+            <div
+              class="
+                card
+                phase
+                ${
+                  unlocked
+                    ? ""
+                    : "locked"
+                }
+              "
+              ${
+                unlocked
+                  ? `
+                    onclick="
+                    openPhase(
+                      ${phase.id}
+                    )
+                    "
+                  `
+                  : ""
+              }
+            >
+
+              <span class="tag">
+
+                ${
+                  unlocked
+                    ? "DESBLOQUEADA"
+                    : "🔒 BLOQUEADA"
+                }
+
+              </span>
+
+
+              <h3>
+
+                ${phase.id}.
+                ${phase.name}
+
+              </h3>
+
+
+              <p>
+
+                ${phase.description}
+
+              </p>
+
+
+              <div class="small">
+
+                Dificuldade:
+                ${phase.difficulty}
+
+              </div>
+
+
+              <br>
+
+
+              <div class="small">
+
+                ${percent}%
+                concluída
+
+              </div>
+
+
+              <div class="bar">
+
+                <i
+                  style="
+                    width:${percent}%
+                  "
+                ></i>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      ).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ABRIR FASE
+   ========================================================= */
+
+function openPhase(
+  phase
+){
+
+  if(
+    !isPhaseUnlocked(
+      phase
+    )
+  ){
+
+    alert(
+      "Complete a fase anterior para desbloquear esta fase."
+    );
+
+    return;
+
+  }
+
+
+  currentPhase =
+    phase;
+
+  currentQuestion =
+    1;
+
+  currentFeedback =
+    null;
+
+  currentView =
+    "phase";
+
+  render();
+
+}
+
+
+/* =========================================================
+   PROGRESSO
+   ========================================================= */
+
+function progress(){
+
+  const completed =
+    getTotalCompleted();
+
+
+  return `
+
+    ${menu()}
+
+    <div class="card hero">
+
+      <h1>
+        📊 Seu Progresso
+      </h1>
+
+      <p>
+
+        Você completou
+        ${completed}
+        de
+        ${TOTAL_CHALLENGES}
+        desafios.
+
+      </p>
+
+      <div class="bar">
+
+        <i
+          style="
+            width:${
+              Math.round(
+                completed /
+                TOTAL_CHALLENGES *
+                100
+              )
+            }%
+          "
+        ></i>
+
+      </div>
+
+    </div>
+
+
+    <div class="grid">
+
+      ${PHASES.map(
+        phase => {
+
+          const percent =
+            getPhasePercent(
+              phase.id
+            );
+
+          return `
+
+            <div
+              class="card phase"
+            >
+
+              <span class="tag">
+
+                ${percent}%
+
+              </span>
+
+
+              <h3>
+
+                Fase
+                ${phase.id}
+                —
+                ${phase.name}
+
+              </h3>
+
+
+              <p>
+
+                ${getPhaseCompleted(
+                  phase.id
+                )}
+                /100 desafios
+
+              </p>
+
+
+              <div class="bar">
+
+                <i
+                  style="
+                    width:${percent}%
+                  "
+                ></i>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      ).join("")}
+
+    </div>
+
+
+    <h2
+      class="section-title"
+    >
+      🏆 Conquistas
+    </h2>
+
+
+    <div class="badges">
+
+      <div
+        class="
+          badge
+          ${
+            completed >= 1
+              ? "on"
+              : ""
+          }
+        "
+      >
+        🎯 Primeiro desafio
+      </div>
+
+
+      <div
+        class="
+          badge
+          ${
+            completed >= 50
+              ? "on"
+              : ""
+          }
+        "
+      >
+        ⚡ 50 desafios
+      </div>
+
+
+      <div
+        class="
+          badge
+          ${
+            completed >= 100
+              ? "on"
+              : ""
+          }
+        "
+      >
+        ☠️ Primeira fase
+      </div>
+
+
+      <div
+        class="
+          badge
+          ${
+            completed >= 250
+              ? "on"
+              : ""
+          }
+        "
+      >
+        🔥 250 desafios
+      </div>
+
+
+      <div
+        class="
+          badge
+          ${
+            completed >= 500
+              ? "on"
+              : ""
+          }
+        "
+      >
+        👑 Cyber Mafia Master
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LABORATÓRIO
+   ========================================================= */
+
+function lab(){
+
+  return `
+
+    ${menu()}
+
+    <div
+      class="card terminal"
+    >
+
+      <h2>
+        🖥️ Terminal
+        Cyber Mafia
+      </h2>
+
+      <p
+        class="explain"
+      >
+
+        Terminal simulado
+        para treinamento.
+        Nenhum comando real
+        será executado.
+
+      </p>
+
+
+      <pre
+        id="terminalOutput"
+      >
+Cyber Mafia Lab v1.0
+
+Digite:
+help
+
+      </pre>
+
+
+      <input
+        id="terminalInput"
+        placeholder="Digite um comando..."
+        onkeydown="
+          if(event.key==='Enter')
+          terminalCommand()
+        "
+      >
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   TERMINAL
+   ========================================================= */
+
+function terminalCommand(){
+
+  const input =
+    document
+      .getElementById(
+        "terminalInput"
+      );
+
+  const output =
+    document
+      .getElementById(
+        "terminalOutput"
+      );
+
+
+  const command =
+    input.value
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    command === "clear"
+  ){
+
+    output.textContent =
+      "";
+
+    input.value =
+      "";
+
+    return;
+
+  }
+
+
+  const commands = {
+
+    help:
+      "Comandos disponíveis: help, whoami, status, xp, phases, clear",
+
+    whoami:
+      "Usuário: " +
+      user.username,
+
+    status:
+      "Desafios concluídos: " +
+      getTotalCompleted() +
+      "/500",
+
+    xp:
+      "XP atual: " +
+      user.xp,
+
+    phases:
+      "5 fases / 500 desafios"
+
+  };
+
+
+  output.textContent +=
+
+    "\n> " +
+    command +
+    "\n" +
+
+    (
+      commands[
+        command
+      ]
+      ||
+      "Comando não reconhecido. Digite help."
+    );
+
+
+  input.value =
+    "";
+
+}
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function render(){
+
+  if(!user){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  document.body.innerHTML =
+
+    header() +
+
+    `<main
+      class="container"
+      id="main"
+    ></main>`;
+
+
+  const main =
+    document.getElementById(
+      "main"
+    );
+
+
+  if(
+    currentView
+    ===
+    "dashboard"
+  ){
+
+    main.innerHTML =
+      dashboard();
+
+  }
+
+
+  if(
+    currentView
+    ===
+    "progress"
+  ){
+
+    main.innerHTML =
+      progress();
+
+  }
+
+
+  if(
+    currentView
+    ===
+    "lab"
+  ){
+
+    main.innerHTML =
+      lab();
+
+  }
+
+
+  if(
+    currentView
+    ===
+    "phase"
+  ){
+
+    main.innerHTML =
+      phaseScreen();
+
+  }
+
+
+  if(
+    currentView
+    ===
+    "challenge"
+  ){
+
+    main.innerHTML =
+      challengeScreen();
+
+  }
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+if(
+  !session ||
+  !user
+){
+
+  showLogin();
+
+}else{
+
+  render();
+
+}
 
 </script>
 
-
 </body>
-
 </html>
